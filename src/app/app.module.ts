@@ -18,6 +18,21 @@ import { FacturasComponent } from './components/facturas/facturas.component';
 import { PedidosComponent } from './components/pedidos/pedidos.component';
 import { PersonasComponent } from './components/personas/personas.component';
 import { VehiculosComponent } from './components/vehiculos/vehiculos.component';
+import { FormularioComponent } from './components/formulario/formulario.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatMenuModule } from '@angular/material/menu';
+import { TablaComponent } from './components/tabla/tabla.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { TreeComponent } from './components/tree/tree.component';
+import { MatTreeModule } from '@angular/material/tree';
 
 @NgModule({
   declarations: [
@@ -30,7 +45,11 @@ import { VehiculosComponent } from './components/vehiculos/vehiculos.component';
     FacturasComponent,
     PedidosComponent,
     PersonasComponent,
-    VehiculosComponent
+    VehiculosComponent,
+    FormularioComponent,
+    DashboardComponent,
+    TablaComponent,
+    TreeComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +59,18 @@ import { VehiculosComponent } from './components/vehiculos/vehiculos.component';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    MatGridListModule,
+    MatMenuModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTreeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
