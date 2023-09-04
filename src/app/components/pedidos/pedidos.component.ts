@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ServiceService } from 'src/app/services/service.service';
 
 @Component({
   selector: 'app-pedidos',
@@ -6,5 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./pedidos.component.css']
 })
 export class PedidosComponent {
+  constructor(public api:ServiceService){ }
+  titulo = 'VISTA PEDIDOS';
 
+
+  mostrarPedidoes(){
+    this.api.GetData('Pedidoes')
+  }
+
+  mostrarPedidoesConDatos(){
+    this.api.GetData('VistaPedidoConDato')
+  }
+  ngOnInit(){
+    this.mostrarPedidoes();
+    this.mostrarPedidoesConDatos();
+  }
 }

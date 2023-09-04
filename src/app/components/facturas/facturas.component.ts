@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ServiceService } from 'src/app/services/service.service';
 
 @Component({
   selector: 'app-facturas',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./facturas.component.css']
 })
 export class FacturasComponent {
+  constructor(public api:ServiceService){ }
+  titulo = 'VISTA FACTURA';
 
+
+  mostrarFacturas(){
+    this.api.GetData('Facturas')
+  }
+  ngOnInit(){
+    this.mostrarFacturas();
+  }
 }
