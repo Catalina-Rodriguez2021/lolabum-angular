@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServiceService } from 'src/app/services/service.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { ServiceService } from 'src/app/services/service.service';
   templateUrl: './pedidos.component.html',
   styleUrls: ['./pedidos.component.css']
 })
-export class PedidosComponent {
+export class PedidosComponent implements OnInit{
   constructor(public api:ServiceService){ }
   titulo = 'VISTA PEDIDOS';
 
