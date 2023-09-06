@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServiceService } from 'src/app/services/service.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { ServiceService } from 'src/app/services/service.service';
   templateUrl: './empleados.component.html',
   styleUrls: ['./empleados.component.css']
 })
-export class EmpleadosComponent {
+export class EmpleadosComponent implements OnInit{
 constructor(public api:ServiceService){ }
 titulo = 'VISTA EMPLEADOS';
 
