@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ServiceService } from 'src/app/services/service.service';
 
 @Component({
   selector: 'app-empleados',
@@ -6,5 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./empleados.component.css']
 })
 export class EmpleadosComponent {
+constructor(public api:ServiceService){ }
+titulo = 'VISTA EMPLEADOS';
 
+
+mostrarEmpleados(){
+  this.api.GetData('Empleadoes')
+}
+
+mostrarEmpleadosConDatos(){
+  this.api.GetData('VistaEmpleadoConDato')
+}
+ngOnInit(){
+  this.mostrarEmpleados();
+  this.mostrarEmpleadosConDatos();
+}
 }
