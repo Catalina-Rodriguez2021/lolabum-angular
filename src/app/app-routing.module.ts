@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoriaComponent } from './components/categoria/categoria.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { ConcesionariosComponent } from './components/concesionarios/concesionarios.component';
 import { EmpleadosComponent } from './components/empleados/empleados.component';
@@ -8,11 +7,12 @@ import { FacturasComponent } from './components/facturas/facturas.component';
 import { PedidosComponent } from './components/pedidos/pedidos.component';
 import { PersonasComponent } from './components/personas/personas.component';
 import { VehiculosComponent } from './components/vehiculos/vehiculos.component';
+import { CategoriasComponent } from './components/categorias/categorias.component';
 
 const routes: Routes = [
   {
     'path' : 'categoria',
-    'component' : CategoriaComponent
+    'component' : CategoriasComponent
   },
   {
     'path' : 'clientes',
