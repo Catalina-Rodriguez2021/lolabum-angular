@@ -29,7 +29,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { TreeComponent } from './components/tree/tree.component';
 import { MatTreeModule } from '@angular/material/tree';
+
 import { HttpClientModule } from '@angular/common/http';
+import { AvatarModule } from 'ngx-avatars';
+
 import { PersonasComponent } from './components/personas/personas.component';
 import { VehiculosComponent } from './components/vehiculos/vehiculos.component';
 import { ConcesionariosComponent } from './components/concesionarios/concesionarios.component';
@@ -72,7 +75,8 @@ import { CategoriasComponent } from './components/categorias/categorias.componen
     MatPaginatorModule,
     MatSortModule,
     MatTreeModule,
-    HttpClientModule
+    HttpClientModule,
+    AvatarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
