@@ -14,4 +14,16 @@ export class ServiceService {
       console.log(res);
     }))
   }
+
+  public async PostData (endpoint: String, body: String){
+    return await this.api.post(this.Url+endpoint, body).subscribe((res =>{}))
+  }
+
+  public async DeleteData(endpoint: string, id: string){
+    return await this.api.delete(this.Url+endpoint+"/"+id)
+  }
+
+  public async updateData(endpoint:string,id:string,body:string){
+    return await this.api.put(this.Url+endpoint + "/" + id,body)
+  }
 }
