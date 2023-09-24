@@ -10,9 +10,11 @@ export class ServiceService {
   Url="https://localhost:7090/api/"
   
   public async GetData (endpoint: String){
+    var response;
     await this.api.get(this.Url+endpoint).toPromise().then((res =>{
-      console.log(res);
+      response = res;
     }))
+    return response;
   }
 
   public async PostData (endpoint: String, body: String){
