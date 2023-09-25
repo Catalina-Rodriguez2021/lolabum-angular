@@ -38,6 +38,7 @@ import { VehiculosComponent } from './components/vehiculos/vehiculos.component';
 import { ConcesionariosComponent } from './components/concesionarios/concesionarios.component';
 import { CategoriasComponent } from './components/categorias/categorias.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
