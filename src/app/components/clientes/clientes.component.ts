@@ -10,7 +10,7 @@ import { ServiceService } from 'src/app/services/service.service';
   styleUrls: ['./clientes.component.css']
 })
 export class ClientesComponent implements OnInit{
-  displayedColumns: string[] = ['idCliente', 'clienteNombre','clienteApellido','usuario'];
+  displayedColumns: string[] = ['usuario', 'idCliente','identificacion','nombre1','nombre2','apellido1','apellido2','correo','telefono','edad'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(); // Inicializar dataSource aquí
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -20,7 +20,7 @@ export class ClientesComponent implements OnInit{
 
 
   ngOnInit(){
-    this.api.GetData('VistaClienteConDato').then((res)=>{
+    this.api.GetData('Clientes').then((res)=>{
       this.dataSource.data = res;
       console.log(this.dataSource.data)
     })
