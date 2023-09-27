@@ -16,6 +16,15 @@
   z-index: 1;
 }
 
+.mat-toolbar.mat-primary {
+  --mat-toolbar-container-background-color: #60A685;
+  --mat-toolbar-container-text-color: #264134;
+}
+
+.mat-sidenav-content{
+  background-color: #e0fdf0;
+}
+
 .icon {
   display: flex;
   width: 100%;
