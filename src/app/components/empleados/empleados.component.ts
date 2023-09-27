@@ -10,7 +10,7 @@ import { ServiceService } from 'src/app/services/service.service';
   styleUrls: ['./empleados.component.css']
 })
 export class EmpleadosComponent implements OnInit {
-  displayedColumns: string[] = ['idEmpleado', 'empleadoNombre','empleadoApellido','usuario'];
+  displayedColumns: string[] = ['idEmpleado','usuario','identificacion','nombre1','nombre2','apellido1','apellido2','edad','correo','telefono'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(); // Inicializar dataSource aquí
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -20,7 +20,7 @@ export class EmpleadosComponent implements OnInit {
 
 
   ngOnInit() {
-    this.api.GetData('VistaEmpleadoConDato').then((res)=>{
+    this.api.GetData('Empleadoes').then((res)=>{
       this.dataSource.data = res
       console.log(this.dataSource.data)
     })
