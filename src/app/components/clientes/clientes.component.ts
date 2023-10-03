@@ -11,7 +11,7 @@ import { ServiceService } from 'src/app/services/service.service';
 })
 export class ClientesComponent implements OnInit{
 
-  displayedColumns: string[] = ['idCliente','usuario','identificacion','nombre1','nombre2','apellido1','apellido2','correo','telefono','edad'];
+  displayedColumns: string[] = ['idCliente','usuario','identificacion','nombre1','nombre2','apellido1','apellido2','correo','telefono','edad','opciones'];
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(); // Inicializar dataSource aquí
 
@@ -41,4 +41,15 @@ export class ClientesComponent implements OnInit{
       this.dataSource.paginator.firstPage();
     }
   }
+
+  editar(row: any) {
+    // Aquí debes implementar la lógica para editar el elemento
+    console.log('Editar', row);
+  }
+  
+  eliminar(row: any) {
+    // Aquí debes implementar la lógica para eliminar el elemento
+    console.log('Eliminar', row);
+  }
+  
 }

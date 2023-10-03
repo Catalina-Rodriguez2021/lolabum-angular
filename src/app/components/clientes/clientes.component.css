@@ -1,3 +1,15 @@
 .container{
     margin: 40px;
  }
+
+ .opciones-cell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .editar-button,
+  .eliminar-button {
+    margin: 0;
+  }
+  
