@@ -10,7 +10,7 @@ import { ServiceService } from 'src/app/services/service.service';
   styleUrls: ['./facturas.component.css']
 })
 export class FacturasComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['idFactura', 'fechaFactura','state'];
+  displayedColumns: string[] = ['idFactura', 'fechaFactura','state','opciones'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(); // Inicializar dataSource aquí
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -39,4 +39,14 @@ export class FacturasComponent implements OnInit, AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+
+  editar(row: any) {
+    console.log('Editar', row);
+  }
+
+  eliminar(row: any) {
+    console.log('Eliminar', row);
+  }
 }
+

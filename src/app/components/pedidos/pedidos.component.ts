@@ -9,17 +9,17 @@ import { ServiceService } from 'src/app/services/service.service';
   templateUrl: './pedidos.component.html',
   styleUrls: ['./pedidos.component.css']
 })
-export class PedidosComponent  implements OnInit{
-  displayedColumns: string[] = ['idPedido', 'pedido','clienteNombre','clienteApellido','vehiculoNombre','vehiculoPrecio','concesionarioNombre','fechaFactura'];
+export class PedidosComponent implements OnInit {
+  displayedColumns: string[] = ['idPedido', 'pedido', 'clienteNombre', 'clienteApellido', 'vehiculoNombre', 'vehiculoPrecio', 'concesionarioNombre', 'fechaFactura','opciones'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(); // Inicializar dataSource aquí
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public api:ServiceService){ }
+  constructor(public api: ServiceService) { }
   titulo = 'VISTA PEDIDOS';
-  ngOnInit(){
-    this.api.GetData('VistaPedidoConDato').then((res)=>{
+  ngOnInit() {
+    this.api.GetData('VistaPedidoConDato').then((res) => {
       this.dataSource.data = res;
       console.log(this.dataSource.data)
     })
@@ -38,5 +38,12 @@ export class PedidosComponent  implements OnInit{
       this.dataSource.paginator.firstPage();
     }
   }
+
+  editar(row: any) {
+    console.log('Editar', row);
+  }
+
+  eliminar(row: any) {
+    console.log('Eliminar', row);
+  }
 }
- 

@@ -10,7 +10,7 @@ import { ServiceService } from 'src/app/services/service.service';
   styleUrls: ['./personas.component.css']
 })
 export class PersonasComponent  implements OnInit{
-  displayedColumns: string[] = ['idPersona', 'identificacion','nombre1','nombre2','apellido1','apellido2','edad','correo','telefono'];
+  displayedColumns: string[] = ['idPersona', 'identificacion','nombre1','nombre2','apellido1','apellido2','edad','correo','telefono','opciones'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(); // Inicializar dataSource aquí
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -39,5 +39,14 @@ export class PersonasComponent  implements OnInit{
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+
+  editar(row: any) {
+    console.log('Editar', row);
+  }
+
+  eliminar(row: any) {
+    console.log('Eliminar', row);
   }
 }
