@@ -10,7 +10,7 @@ import { ServiceService } from 'src/app/services/service.service';
   styleUrls: ['./categorias.component.css']
 })
 export class CategoriasComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['idCategoria', 'nombre'];
+  displayedColumns: string[] = ['idCategoria', 'nombre','opciones'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(); // Inicializar dataSource 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -37,5 +37,16 @@ export class CategoriasComponent implements OnInit, AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  
+  editar(row: any) {
+    // Aquí debes implementar la lógica para editar el elemento
+    console.log('Editar', row);
+  }
+  
+  eliminar(row: any) {
+    // Aquí debes implementar la lógica para eliminar el elemento
+    console.log('Eliminar', row);
   }
 }

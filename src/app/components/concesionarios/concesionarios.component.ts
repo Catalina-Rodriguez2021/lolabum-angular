@@ -10,7 +10,7 @@ import { ServiceService } from 'src/app/services/service.service';
   styleUrls: ['./concesionarios.component.css']
 })
 export class ConcesionariosComponent implements OnInit {
-  displayedColumns: string[] = ['idConcesionario', 'direccion', 'email', 'nombre','telefono'];
+  displayedColumns: string[] = ['idConcesionario', 'direccion', 'email', 'nombre','telefono','opciones'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(); // Inicializar dataSource aquí
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -37,6 +37,17 @@ export class ConcesionariosComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  
+  editar(row: any) {
+    // Aquí debes implementar la lógica para editar el elemento
+    console.log('Editar', row);
+  }
+  
+  eliminar(row: any) {
+    // Aquí debes implementar la lógica para eliminar el elemento
+    console.log('Eliminar', row);
   }
 }
 

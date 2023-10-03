@@ -10,7 +10,7 @@ import { ServiceService } from 'src/app/services/service.service';
   styleUrls: ['./empleados.component.css']
 })
 export class EmpleadosComponent implements OnInit {
-  displayedColumns: string[] = ['idEmpleado','usuario','identificacion','nombre1','nombre2','apellido1','apellido2','edad','correo','telefono'];
+  displayedColumns: string[] = ['idEmpleado','usuario','identificacion','nombre1','nombre2','apellido1','apellido2','edad','correo','telefono','opciones'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(); // Inicializar dataSource aquí
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -38,5 +38,15 @@ export class EmpleadosComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+  
+  editar(row: any) {
+    // Aquí debes implementar la lógica para editar el elemento
+    console.log('Editar', row);
+  }
+  
+  eliminar(row: any) {
+    // Aquí debes implementar la lógica para eliminar el elemento
+    console.log('Eliminar', row);
   }
 }
