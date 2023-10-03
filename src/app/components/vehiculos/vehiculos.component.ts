@@ -10,7 +10,7 @@ import { ServiceService } from 'src/app/services/service.service';
   styleUrls: ['./vehiculos.component.css']
 })
 export class VehiculosComponent implements OnInit{
-  displayedColumns: string[] = ['idVehiculos', 'nombre','precio'];
+  displayedColumns: string[] = ['idVehiculos', 'nombre','precio','opciones'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(); // Inicializar dataSource aquí
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -38,6 +38,14 @@ export class VehiculosComponent implements OnInit{
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  editar(row: any) {
+    console.log('Editar', row);
+  }
+
+  eliminar(row: any) {
+    console.log('Eliminar', row);
   }
 }
 
