@@ -37,6 +37,7 @@ import { PersonasComponent } from './components/personas/personas.component';
 import { VehiculosComponent } from './components/vehiculos/vehiculos.component';
 import { ConcesionariosComponent } from './components/concesionarios/concesionarios.component';
 import { CategoriasComponent } from './components/categorias/categorias.component';
+import { FormClientesComponent } from './components/form-clientes/form-clientes.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { CategoriasComponent } from './components/categorias/categorias.componen
     PersonasComponent,
     VehiculosComponent,
     ConcesionariosComponent,
-    CategoriasComponent
+    CategoriasComponent,
+    FormClientesComponent
   ],
   imports: [
     BrowserModule,
