@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 
 import { FormBuilder, Validators } from '@angular/forms';
+import { ServiceService } from 'src/app/services/service.service';
 import Swal from 'sweetalert2';
 
 
@@ -10,6 +11,24 @@ import Swal from 'sweetalert2';
   styleUrls: ['./form-clientes.component.css']
 })
 export class FormClientesComponent {
+  cliente = {
+    identificacion:null,
+    nombre1:null,
+    nombre2:null,
+    apellido1:null,
+    apellido2:null,
+    edad:null,
+    correo:null,
+    telefono:null
+  }
+  clienteUsuario = {
+    idPersona: null,
+    usuario:null,
+    contrasena:null
+  }
+
+  constructor(public api:ServiceService){ }
+
   private fb = inject(FormBuilder);
   addressForm = this.fb.group({
     id: [null,Validators.compose([
@@ -31,13 +50,32 @@ export class FormClientesComponent {
     correo: [null,Validators.compose([
       Validators.required,Validators.email
     ])],
+    password: [null]
   });
 
   onSubmit(): void {
-    Swal.fire(
-      'Good job!',
-      'You clicked the button!',
-      'success'
-    )
+
+    if (this.addressForm.valid) {
+      this.cliente.identificacion = this.addressForm.controls['id'].value,
+      this.cliente.nombre1 = this.addressForm.controls['nombre'].value,
+      this.cliente.nombre2 = this.addressForm.controls['nombre2'].value,
+      this.cliente.apellido1 = this.addressForm.controls['apellido'].value,
+      this.cliente.apellido2 = this.addressForm.controls['apellido2'].value,
+      this.cliente.telefono = this.addressForm.controls['telefono'].value,
+      this.cliente.edad = this.addressForm.controls['edad'].value,
+      this.cliente.correo = this.addressForm.controls['correo'].value,
+      console.log(this.cliente)
+
+      this.api.PostData('Personas',this.cliente).then((res)=>{
+          console.log(res),
+          this.clienteUsuario.idPersona = res.idPersona,
+          this.clienteUsuario.usuario = this.addressForm.controls['usuario'].value,
+          this.clienteUsuario.contrasena = this.addressForm.controls['password'].value
+          console.log(this.clienteUsuario);
+          this.api.PostData('Clientes',this.clienteUsuario).then((res)=>{
+            console.log(res)
+          })
+      })
+    }
   }
 }

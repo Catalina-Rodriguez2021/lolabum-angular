@@ -90,6 +90,15 @@
               </mat-error>
             </mat-form-field>
           </div>
+          <div class="col">
+            <h3>Edad</h3>
+            <mat-form-field class="full-width">
+              <input matInput placeholder="password" formControlName="password">
+              <mat-error *ngIf="addressForm.controls['password'].hasError('required')">
+                La password es <strong>Requerida</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
         </div>
       </mat-card-content>
       <mat-card-actions>
