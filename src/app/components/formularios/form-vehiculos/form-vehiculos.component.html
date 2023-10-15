@@ -1,0 +1,58 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Registro vehiculos</mat-card-title>
+    </mat-card-header><br>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Nombre Vehículo" formControlName="nombreVehiculo">
+            <mat-error *ngIf="addressForm.controls['nombreVehiculo'].hasError('required')">
+              nombre del vehiculo es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Categorias" formControlName="categoria">
+              <mat-option *ngFor="let categoria of categorias" [value]="categoria.idCategoria">
+                {{ categoria.nombre }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="addressForm.controls['categoria'].hasError('required')">
+              categoria es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Precio" formControlName="precio">
+            <mat-error *ngIf="addressForm.controls['precio'].hasError('required')">
+              precio del vehiculo es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="consecionario" formControlName="consecionario">
+              <mat-option *ngFor="let consecionario of concescionarios" [value]="consecionario.idConcesionario">
+                {{ consecionario.nombre }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="addressForm.controls['consecionario'].hasError('required')">
+              categoria es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <div class="accion">
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+      </mat-card-actions>
+    </div>
+  </mat-card>
+</form>

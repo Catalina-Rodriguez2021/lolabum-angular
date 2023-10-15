@@ -14,7 +14,7 @@ import { ClientesComponent } from './components/clientes/clientes.component';
 import { EmpleadosComponent } from './components/empleados/empleados.component';
 import { FacturasComponent } from './components/facturas/facturas.component';
 import { PedidosComponent } from './components/pedidos/pedidos.component';
-import { FormularioComponent } from './components/formulario/formulario.component';
+import { FormularioComponent } from './components/formularios/formulario/formulario.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
@@ -37,7 +37,10 @@ import { PersonasComponent } from './components/personas/personas.component';
 import { VehiculosComponent } from './components/vehiculos/vehiculos.component';
 import { ConcesionariosComponent } from './components/concesionarios/concesionarios.component';
 import { CategoriasComponent } from './components/categorias/categorias.component';
-import { FormClientesComponent } from './components/form-clientes/form-clientes.component';
+import { FormClientesComponent } from './components/formularios/form-clientes/form-clientes.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { FormVehiculosComponent } from './components/formularios/form-vehiculos/form-vehiculos.component';
+import { FormPedidoComponent } from './components/formularios/form-pedido/form-pedido.component';
 
 
 @NgModule({
@@ -56,7 +59,9 @@ import { FormClientesComponent } from './components/form-clientes/form-clientes.
     VehiculosComponent,
     ConcesionariosComponent,
     CategoriasComponent,
-    FormClientesComponent
+    FormClientesComponent,
+    FormVehiculosComponent,
+    FormPedidoComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +84,8 @@ import { FormClientesComponent } from './components/form-clientes/form-clientes.
     MatSortModule,
     MatTreeModule,
     HttpClientModule,
-    AvatarModule
+    AvatarModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

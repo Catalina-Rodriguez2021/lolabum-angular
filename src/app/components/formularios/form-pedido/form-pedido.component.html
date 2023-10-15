@@ -1,0 +1,74 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Registro pedido Vehiculo con factura creada</mat-card-title>
+    </mat-card-header><br>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Descripcion pedido" formControlName="description">
+            <mat-error *ngIf="addressForm.controls['description'].hasError('required')">
+              nombre del vehiculo es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Facturas Activas" formControlName="factura">
+              <mat-option *ngFor="let factura of facturas" [value]="factura.idFactura">
+                {{ factura.idFactura }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="addressForm.controls['factura'].hasError('required')">
+              categoria es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="cliente" formControlName="usuario">
+              <mat-option *ngFor="let cliente of clientes" [value]="cliente.idCliente">
+                {{ cliente.usuario }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="addressForm.controls['usuario'].hasError('required')">
+              categoria es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="vehiculo" formControlName="vehiculo">
+              <mat-option *ngFor="let vehiculo of vehiculos" [value]="vehiculo.idVehiculos">
+                {{ vehiculo.nombre }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="addressForm.controls['vehiculo'].hasError('required')">
+              categoria es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="categoria" formControlName="categoria" >
+              <mat-option *ngFor="let categoria of categorias" [value]="categoria.idCategoria" (click)="filerCategoria(categoria.idCategoria)">
+                {{ categoria.nombre }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="addressForm.controls['categoria'].hasError('required')">
+              categoria es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <div class="accion">
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+      </mat-card-actions>
+    </div>
+  </mat-card>
+</form>

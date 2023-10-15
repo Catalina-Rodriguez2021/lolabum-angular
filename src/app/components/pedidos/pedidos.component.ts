@@ -3,6 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ServiceService } from 'src/app/services/service.service';
+import { MatDialog } from '@angular/material/dialog';
+import { FormPedidoComponent } from '../formularios/form-pedido/form-pedido.component';
 
 @Component({
   selector: 'app-pedidos',
@@ -16,7 +18,7 @@ export class PedidosComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public api: ServiceService) { }
+  constructor(public api: ServiceService,public dialog: MatDialog) { }
   titulo = 'VISTA PEDIDOS';
   ngOnInit() {
     this.api.GetData('VistaPedidoConDato').then((res) => {
@@ -46,4 +48,11 @@ export class PedidosComponent implements OnInit {
   eliminar(row: any) {
     console.log('Eliminar', row);
   }
+
+  openDialog(){
+    this.dialog.open(FormPedidoComponent,{
+
+    });
+  }
+  
 }
