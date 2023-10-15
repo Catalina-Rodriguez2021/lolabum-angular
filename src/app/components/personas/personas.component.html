@@ -1,4 +1,5 @@
 <div class="container">
+    <div class="tittle"><h2>{{titulo}}</h2></div>
     <mat-form-field>
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
@@ -81,6 +82,4 @@
 
         <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
     </div>
-
-
 </div>

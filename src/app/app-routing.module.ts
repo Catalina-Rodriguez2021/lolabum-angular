@@ -8,8 +8,8 @@ import { PedidosComponent } from './components/pedidos/pedidos.component';
 import { PersonasComponent } from './components/personas/personas.component';
 import { VehiculosComponent } from './components/vehiculos/vehiculos.component';
 import { CategoriasComponent } from './components/categorias/categorias.component';
-import { FormularioComponent } from './components/formulario/formulario.component';
-import { FormClientesComponent } from './components/form-clientes/form-clientes.component';
+import { FormularioComponent } from './components/formularios/formulario/formulario.component';
+import { FormClientesComponent } from './components/formularios/form-clientes/form-clientes.component';
 
 const routes: Routes = [
   {

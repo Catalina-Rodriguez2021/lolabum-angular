@@ -17,8 +17,12 @@ export class ServiceService {
     return response;
   }
 
-  public async PostData (endpoint: String, body: String){
-    return await this.api.post(this.Url+endpoint, body).subscribe((res =>{}))
+  public async PostData (endpoint: String, body: any){
+    var response;
+    await this.api.post(this.Url+endpoint, body).toPromise().then((res =>{
+      response = res;
+    }))
+    return response
   }
 
   public async DeleteData(endpoint: string, id: string){

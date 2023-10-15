@@ -2,11 +2,12 @@
   <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
     <mat-card class="shipping-card">
       <mat-card-header>
-        <mat-card-title>Categoría</mat-card-title>
+        <mat-card-title>Categoría</mat-card-title><br>
       </mat-card-header>
       <mat-card-content>
         <div class="row">
           <div class="col">
+            <h3>Nombre categoría</h3>
             <mat-form-field class="full-width">
               <input matInput placeholder="categoria" formControlName="categoria">
               <mat-error *ngIf="addressForm.controls['categoria'].hasError('required')">
@@ -16,9 +17,11 @@
           </div>
         </div>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="primary" type="submit">Submit</button>
-      </mat-card-actions>
+      <div class="accion">
+        <mat-card-actions>
+          <button mat-raised-button color="primary" type="submit">Submit</button>
+        </mat-card-actions>
+      </div>
     </mat-card>
   </form>
 </div>

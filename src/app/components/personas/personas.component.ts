@@ -3,6 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ServiceService } from 'src/app/services/service.service';
+import { FormClientesComponent } from '../formularios/form-clientes/form-clientes.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-personas',
@@ -15,7 +17,7 @@ export class PersonasComponent  implements OnInit{
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(public api:ServiceService){ }
+  constructor(public api:ServiceService, public dialog: MatDialog){ }
 
   
   titulo = 'VISTA PERSONAS';
@@ -41,7 +43,6 @@ export class PersonasComponent  implements OnInit{
     }
   }
 
-
   editar(row: any) {
     console.log('Editar', row);
   }
@@ -49,4 +50,5 @@ export class PersonasComponent  implements OnInit{
   eliminar(row: any) {
     console.log('Eliminar', row);
   }
+
 }

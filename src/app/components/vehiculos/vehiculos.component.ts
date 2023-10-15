@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ServiceService } from 'src/app/services/service.service';
+import { FormVehiculosComponent } from '../formularios/form-vehiculos/form-vehiculos.component';
 
 @Component({
   selector: 'app-vehiculos',
@@ -16,7 +18,7 @@ export class VehiculosComponent implements OnInit{
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public api:ServiceService){ }
+  constructor(public api:ServiceService, public dialog: MatDialog){ }
   titulo = 'VISTA VEHICULOS';
 
   ngOnInit(){
@@ -46,6 +48,12 @@ export class VehiculosComponent implements OnInit{
 
   eliminar(row: any) {
     console.log('Eliminar', row);
+  }
+
+  openDialog(){
+    this.dialog.open(FormVehiculosComponent,{
+
+    });
   }
 }
 
