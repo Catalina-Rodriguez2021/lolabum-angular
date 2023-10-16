@@ -3,6 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ServiceService } from 'src/app/services/service.service';
+import { FormEmpleadosComponent } from '../formularios/form-empleados/form-empleados.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-empleados',
@@ -15,7 +17,7 @@ export class EmpleadosComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(public api: ServiceService) { }
+  constructor(public api: ServiceService, public dialog: MatDialog) { }
   titulo = 'VISTA EMPLEADOS';
 
 
@@ -48,5 +50,10 @@ export class EmpleadosComponent implements OnInit {
   eliminar(row: any) {
     // Aquí debes implementar la lógica para eliminar el elemento
     console.log('Eliminar', row);
+  }
+  openDialog(){
+    this.dialog.open(FormEmpleadosComponent,{
+
+    });
   }
 }

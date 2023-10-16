@@ -10,6 +10,8 @@ import { VehiculosComponent } from './components/vehiculos/vehiculos.component';
 import { CategoriasComponent } from './components/categorias/categorias.component';
 import { FormularioComponent } from './components/formularios/formulario/formulario.component';
 import { FormClientesComponent } from './components/formularios/form-clientes/form-clientes.component';
+import { FormEmpleadosComponent } from './components/formularios/form-empleados/form-empleados.component';
+import { FormConcesionariosComponent } from './components/formularios/form-concesionarios/form-concesionarios.component';
 
 const routes: Routes = [
   {
@@ -51,6 +53,14 @@ const routes: Routes = [
   {
     'path': 'formClientes',
     'component': FormClientesComponent
+  },
+  {
+    'path': 'formEmpleados',
+    'component': FormEmpleadosComponent
+  },
+  {
+    'path': 'formConcesionarios',
+    'component': FormConcesionariosComponent
   }
 ];
 

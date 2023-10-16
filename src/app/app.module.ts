@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,10 +28,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { TreeComponent } from './components/tree/tree.component';
 import { MatTreeModule } from '@angular/material/tree';
-
 import { HttpClientModule } from '@angular/common/http';
 import { AvatarModule } from 'ngx-avatars';
-
 import { PersonasComponent } from './components/personas/personas.component';
 import { VehiculosComponent } from './components/vehiculos/vehiculos.component';
 import { ConcesionariosComponent } from './components/concesionarios/concesionarios.component';
@@ -41,6 +38,9 @@ import { FormClientesComponent } from './components/formularios/form-clientes/fo
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { FormVehiculosComponent } from './components/formularios/form-vehiculos/form-vehiculos.component';
 import { FormPedidoComponent } from './components/formularios/form-pedido/form-pedido.component';
+import { FormEmpleadosComponent } from './components/formularios/form-empleados/form-empleados.component';
+import { FormConcesionariosComponent } from './components/formularios/form-concesionarios/form-concesionarios.component';
+
 
 
 @NgModule({
@@ -61,7 +61,10 @@ import { FormPedidoComponent } from './components/formularios/form-pedido/form-p
     CategoriasComponent,
     FormClientesComponent,
     FormVehiculosComponent,
-    FormPedidoComponent
+    FormPedidoComponent,
+    FormEmpleadosComponent,
+    FormConcesionariosComponent
+    
   ],
   imports: [
     BrowserModule,
