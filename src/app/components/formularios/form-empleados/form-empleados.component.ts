@@ -76,7 +76,7 @@ export class FormEmpleadosComponent {
           this.DataEmpleado.contrasena = this.addressForm.controls['password'].value
           console.log(this.DataEmpleado);
           //enviar datos a post de Empleados
-          this.api.PostData('Empleados',this.DataEmpleado).then((res)=>{
+          this.api.PostData('Empleadoes',this.DataEmpleado).then((res)=>{
             console.log(res)
             //aletar registro exitoso
             Swal.fire(

@@ -11,10 +11,10 @@ import Swal from 'sweetalert2';
 })
 export class FormConcesionariosComponent {
   concecionario: ConsesionariosModel = {
-    Nombre: null,
-    Direccion:null,
-    Telefono:null,
-    Email:null
+    nombre: null,
+    direccion:null,
+    telefono:null,
+    email:null
   }
 
   constructor(public api:ServiceService){ }
@@ -33,10 +33,10 @@ export class FormConcesionariosComponent {
 
   onSubmit(): void {
     if(this.addressForm.valid){
-      this.concecionario.Nombre = this.addressForm.controls['nombre'].value;
-      this.concecionario.Direccion = this.addressForm.controls['direccion'].value;
-      this.concecionario.Telefono = this.addressForm.controls['telefono'].value;
-      this.concecionario.Email = this.addressForm.controls['email'].value;
+      this.concecionario.nombre = this.addressForm.controls['nombre'].value;
+      this.concecionario.direccion = this.addressForm.controls['direccion'].value;
+      this.concecionario.telefono = this.addressForm.controls['telefono'].value;
+      this.concecionario.email = this.addressForm.controls['email'].value;
       console.log(this.concecionario)
       this.api.PostData('Vehiculoes',this.concecionario).then((res)=>{
         console.log(res);
