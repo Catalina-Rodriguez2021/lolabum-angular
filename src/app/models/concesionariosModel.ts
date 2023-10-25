@@ -1,6 +1,6 @@
 export class ConsesionariosModel{
-    Nombre:String;
-    Direccion: String;
-    Telefono: number;
-    Email:String
+    nombre:String;
+    direccion: String;
+    telefono: number;
+    email:String
 }
