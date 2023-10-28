@@ -25,11 +25,19 @@ export class ServiceService {
     return response
   }
 
-  public async DeleteData(endpoint: string, id: string){
-    return await this.api.delete(this.Url+endpoint+"/"+id)
+  public async DeleteData(endpoint: string, id: number){
+    var response;
+    await this.api.delete(this.Url+endpoint + "/" + id).toPromise().then((res)=>{
+      response = res;
+    })
+    return response
   }
 
-  public async updateData(endpoint:string,id:string,body:string){
-    return await this.api.put(this.Url+endpoint + "/" + id,body)
+  public async updateData(endpoint:string,id:number,body:any){
+    var response;
+    await this.api.put(this.Url+endpoint + "/" + id,body).toPromise().then((res)=>{
+      response = res;
+    })
+    return response
   }
 }

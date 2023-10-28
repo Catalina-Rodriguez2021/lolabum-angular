@@ -22,9 +22,8 @@ export class FormPedidoComponent {
   categoria: any = null;
 
   pedido: PedidosModel = {
-    pedido1: null,
+    pedido: null,
     idCliente: null,
-    idFactura: null,
     idVehiculos: null
   }
 
@@ -54,7 +53,6 @@ export class FormPedidoComponent {
   private fb = inject(FormBuilder);
   addressForm = this.fb.group({
     description: [null, Validators.required],
-    factura: [null, Validators.required],
     usuario: [null, Validators.required],
     vehiculo: [null, Validators.required],
     categoria: [null, Validators.required],
@@ -63,9 +61,9 @@ export class FormPedidoComponent {
   onSubmit(): void {
     if (this.addressForm.valid) {
       this.pedido.idCliente = this.addressForm.controls['usuario'].value,
-        this.pedido.pedido1 = this.addressForm.controls['description'].value,
-        this.pedido.idFactura = this.addressForm.controls['factura'].value,
+        this.pedido.pedido = this.addressForm.controls['description'].value,
         this.pedido.idVehiculos = this.addressForm.controls['vehiculo'].value
+        console.log(this.pedido)
       this.api.PostData("Pedidoes", this.pedido).then((res) => {
         console.log(res)
         //aletar registro exitoso

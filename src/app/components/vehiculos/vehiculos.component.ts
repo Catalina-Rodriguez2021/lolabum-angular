@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ServiceService } from 'src/app/services/service.service';
 import { FormVehiculosComponent } from '../formularios/form-vehiculos/form-vehiculos.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-vehiculos',
@@ -47,7 +48,34 @@ export class VehiculosComponent implements OnInit{
   }
 
   eliminar(row: any) {
-    console.log('Eliminar', row);
+    Swal.fire({
+      title: 'Está seguro?',
+      text: "No será capáz de revertir!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, elimínalo!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+
+        console.log(row.idVehiculos)
+
+        this.api.DeleteData("Vehiculoes", row.idVehiculos).then((res) => {
+          console.log(res);
+          this.ngOnInit();
+          Swal.fire(
+            'Eliminado!',
+            'El resgitro ha sido eliminado con exito.',
+            'success'
+          )
+        }).catch((err) => {
+          console.log(err)
+        })
+
+      }
+    })
   }
 
   openDialog(){
