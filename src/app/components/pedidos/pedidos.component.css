@@ -13,18 +13,30 @@
     margin: 0;
   }
   
-  .crear {
-    margin-top: 40px;
+  .botones {
+    margin-top: 0%;
     margin-right: auto;
     padding: 8px;
+    display: flex;
   }
   
-  .crear button {
+  .botones button {
     border-radius: 4px;
     background-color: #60A685;
     color: #264134;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
   }
+
+  .comprar button{
+    margin-left: 4rem;
+  }
+
+.comprar button:disabled {
+  background-color: #ccc; 
+  color: #888; 
+  cursor: not-allowed; 
+}
+
   
   .title {
     color: #264134;
@@ -41,3 +53,16 @@
     text-align: left;
   }
   
+  table {
+    width: 90%;
+    margin:1rem auto;
+ }
+
+ .contenedor {
+    display: flex;
+    flex-direction: column;
+    margin-top:1rem auto;
+    max-width: 300px;
+    padding: 1rem;
+    padding-left: 0%;
+}   

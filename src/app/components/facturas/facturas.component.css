@@ -40,4 +40,20 @@
     padding: 8px;
     text-align: left;
   }
-  
+
+
+/* Estilo para el contenedor */
+.contenedor {
+  width: 50%; /* El 50% del ancho de la ventana gráfica */
+  margin: 0; /* Sin margen en la parte superior e inferior */
+  padding: 0; /* Sin relleno en la parte superior e inferior */
+  display: flex;
+  justify-content: flex-start; /* Alineación del contenido a la izquierda */
+}
+
+.contenedor  mat-form-field{
+  margin-right:3rem;
+}
+
+
+

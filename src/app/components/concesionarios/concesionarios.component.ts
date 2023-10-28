@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ServiceService } from 'src/app/services/service.service';
 import { FormConcesionariosComponent } from '../formularios/form-concesionarios/form-concesionarios.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ConsesionariosModelUpdate } from 'src/app/models/concesionariosModel';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-concesionarios',
@@ -12,19 +14,26 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./concesionarios.component.css']
 })
 export class ConcesionariosComponent implements OnInit {
-  displayedColumns: string[] = ['idConcesionario', 'direccion', 'email', 'nombre','telefono','opciones'];
+  displayedColumns: string[] = ['idConcesionario', 'direccion', 'email', 'nombre', 'telefono', 'opciones'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(); // Inicializar dataSource aquí
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(public api: ServiceService, public dialog: MatDialog) { }
   titulo = 'VISTA CONCESIONARIOS';
-
+  vehiculos = []
   ngOnInit() {
     this.api.GetData('Concescionarios').then((res) => {
       this.dataSource.data = res;
       console.log(this.dataSource.data)
+    });
+
+    this.api.GetData('Vehiculoes').then((res) => {
+      this.vehiculos = res;
+      console.log(this.vehiculos)
     })
+
+    
   }
 
   ngAfterViewInit() {
@@ -41,20 +50,62 @@ export class ConcesionariosComponent implements OnInit {
     }
   }
 
-  
+
   editar(row: any) {
     // Aquí debes implementar la lógica para editar el elemento
     console.log('Editar', row);
   }
-  
-  eliminar(row: any) {
-    // Aquí debes implementar la lógica para eliminar el elemento
-    console.log('Eliminar', row);
-  }
-  openDialog(){
-    this.dialog.open(FormConcesionariosComponent,{
 
+  eliminar(row: any) {
+
+    Swal.fire({
+      title: 'Está seguro?',
+      text: "No será capáz de revertir!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Cancelar!',
+      confirmButtonText: 'Si, elimínalo!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        console.log(row.idConcesionario)
+
+        this.api.DeleteData("Concescionarios/delete", row.idConcesionario).then((res) => {
+          console.log("AQUI")
+          console.log(this.vehiculos)
+          this.vehiculos.forEach((element)=>{
+            if(element.idConcesionario === row.idConcesionario){
+              console.log(element)
+              console.log("entra ciclo")
+              this.api.DeleteData("Vehiculoes", element.idVehiculos).then((res) => {
+                console.log(res);
+                console.log('eliminado');
+                console.log(element)
+              }).catch((err) => {
+                console.log(err)
+              })
+            }
+          })
+          console.log(res);
+          this.ngOnInit();
+          Swal.fire(
+            'Eliminado!',
+            'El resgitro ha sido eliminado con exito.',
+            'success'
+          )
+        }).catch((err) => {
+          console.log(err)
+        })
+
+      }
+    })
+  }
+  openDialog() {
+    this.dialog.open(FormConcesionariosComponent, {
     });
   }
+
 }
 
