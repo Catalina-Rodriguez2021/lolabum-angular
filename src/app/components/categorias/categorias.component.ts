@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ServiceService } from 'src/app/services/service.service';
 import { FormularioComponent } from '../formularios/formulario/formulario.component';
 import Swal from 'sweetalert2';
+import { ModalServiceService } from 'src/app/services/modal-service.service';
 
 @Component({
   selector: 'app-categorias',
@@ -18,7 +19,7 @@ export class CategoriasComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(public api: ServiceService, public dialog: MatDialog) { }
+  constructor(public api: ServiceService, public dialog: MatDialog, public modalService:ModalServiceService) { }
   titulo = 'VISTA CATEGORIA';
   vehiculos = []
 
@@ -49,8 +50,11 @@ export class CategoriasComponent implements OnInit, AfterViewInit {
 
   
   editar(row: any) {
-    // Aquí debes implementar la lógica para editar el elemento
-    console.log('Editar', row);
+    this.modalService.accion.next("editar");
+    this.modalService.titulo = "Editar"
+    this.modalService.categorias = row;
+    this.dialog.open(FormularioComponent,{
+    });
   }
   
   eliminar(row: any) {
@@ -99,8 +103,11 @@ export class CategoriasComponent implements OnInit, AfterViewInit {
     })
   }
 
-  openDialog(){
+  onSubmit(){
+    this.modalService.accion.next("editar");
+    this.modalService.titulo = "Crear"
     this.dialog.open(FormularioComponent,{
     });
   }
+
 }

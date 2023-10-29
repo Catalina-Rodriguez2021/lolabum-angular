@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ServiceService } from 'src/app/services/service.service';
 import { FormVehiculosComponent } from '../formularios/form-vehiculos/form-vehiculos.component';
 import Swal from 'sweetalert2';
+import { ModalServiceService } from 'src/app/services/modal-service.service';
 
 @Component({
   selector: 'app-vehiculos',
@@ -19,7 +20,7 @@ export class VehiculosComponent implements OnInit{
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public api:ServiceService, public dialog: MatDialog){ }
+  constructor(public api:ServiceService, public dialog: MatDialog, public modularService:ModalServiceService){ }
   titulo = 'VISTA VEHICULOS';
 
   ngOnInit(){
@@ -44,7 +45,11 @@ export class VehiculosComponent implements OnInit{
   }
 
   editar(row: any) {
-    console.log('Editar', row);
+    this.modularService.accion.next("editar");
+    this.modularService.titulo = "Editar";
+    this.modularService.vehiculos = row;
+    this.dialog.open(FormVehiculosComponent,{
+    });
   }
 
   eliminar(row: any) {
@@ -79,8 +84,9 @@ export class VehiculosComponent implements OnInit{
   }
 
   openDialog(){
+    this.modularService.accion.next("crear");
+    this.modularService.titulo = "Crear"
     this.dialog.open(FormVehiculosComponent,{
-
     });
   }
 }

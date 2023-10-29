@@ -7,6 +7,8 @@ import { FormConcesionariosComponent } from '../formularios/form-concesionarios/
 import { MatDialog } from '@angular/material/dialog';
 import { ConsesionariosModelUpdate } from 'src/app/models/concesionariosModel';
 import Swal from 'sweetalert2';
+import { ModalServiceService } from 'src/app/services/modal-service.service';
+import { FormClientesComponent } from '../formularios/form-clientes/form-clientes.component';
 
 @Component({
   selector: 'app-concesionarios',
@@ -19,9 +21,11 @@ export class ConcesionariosComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(public api: ServiceService, public dialog: MatDialog) { }
+  constructor(public api: ServiceService, public dialog: MatDialog, public modularService: ModalServiceService) { }
   titulo = 'VISTA CONCESIONARIOS';
   vehiculos = []
+
+
   ngOnInit() {
     this.api.GetData('Concescionarios').then((res) => {
       this.dataSource.data = res;
@@ -33,7 +37,6 @@ export class ConcesionariosComponent implements OnInit {
       console.log(this.vehiculos)
     })
 
-    
   }
 
   ngAfterViewInit() {
@@ -52,8 +55,11 @@ export class ConcesionariosComponent implements OnInit {
 
 
   editar(row: any) {
-    // Aquí debes implementar la lógica para editar el elemento
-    console.log('Editar', row);
+    this.modularService.accion.next("editar")
+    this.modularService.titulo = "Editar"
+    this.modularService.concesionario = row;
+    this.dialog.open(FormConcesionariosComponent, {
+    });
   }
 
   eliminar(row: any) {
@@ -75,8 +81,8 @@ export class ConcesionariosComponent implements OnInit {
         this.api.DeleteData("Concescionarios/delete", row.idConcesionario).then((res) => {
           console.log("AQUI")
           console.log(this.vehiculos)
-          this.vehiculos.forEach((element)=>{
-            if(element.idConcesionario === row.idConcesionario){
+          this.vehiculos.forEach((element) => {
+            if (element.idConcesionario === row.idConcesionario) {
               console.log(element)
               console.log("entra ciclo")
               this.api.DeleteData("Vehiculoes", element.idVehiculos).then((res) => {
@@ -103,8 +109,13 @@ export class ConcesionariosComponent implements OnInit {
     })
   }
   openDialog() {
-    this.dialog.open(FormConcesionariosComponent, {
-    });
+    this.modularService.accion.next("crear");
+    this.modularService.titulo = "Crear"
+    const dialogRef = this.dialog.open(FormConcesionariosComponent)
+
+    dialogRef.afterClosed().subscribe(res =>{
+      this.ngOnInit()
+    })
   }
 
 }

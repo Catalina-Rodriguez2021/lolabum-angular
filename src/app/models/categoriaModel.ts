@@ -3,6 +3,7 @@ export class CategoriaModel{
 }
 
 export class CategoriaModelUpdate{
+    idCategoria:number;
     nombre:String;
     estado:boolean
 }
