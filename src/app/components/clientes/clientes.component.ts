@@ -56,7 +56,6 @@ export class ClientesComponent implements OnInit{
 
   openDialog(){
     this.dialog.open(FormClientesComponent,{
-
     });
   }
   
