@@ -13,6 +13,7 @@ import { FormClientesComponent } from './components/formularios/form-clientes/fo
 import { FormEmpleadosComponent } from './components/formularios/form-empleados/form-empleados.component';
 import { FormConcesionariosComponent } from './components/formularios/form-concesionarios/form-concesionarios.component';
 
+
 const routes: Routes = [
   {
     'path' : 'categoria',
@@ -46,6 +47,7 @@ const routes: Routes = [
     'path' : 'vehiculos',
     'component' : VehiculosComponent
   },
+
   {
     'path': 'form',
     'component' : FormularioComponent

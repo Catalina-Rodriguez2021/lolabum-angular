@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ServiceService } from 'src/app/services/service.service';
 import { FormClientesComponent } from '../formularios/form-clientes/form-clientes.component';
 import { MatDialog } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-personas',
@@ -48,7 +49,68 @@ export class PersonasComponent  implements OnInit{
   }
 
   eliminar(row: any) {
-    console.log('Eliminar', row);
+    Swal.fire({
+      title: '¿Está seguro?',
+      text: 'No podrá revertir esto.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, elimínelo'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.eliminarRelacionesPersona(row.idPersona);
+      }
+    });
+  }
+
+  eliminarRelacionesPersona(idPersona: number) {
+    this.api.GetData('Clientes').then((clientes) => {
+      const cliente = clientes.find((c) => c.idPersona === idPersona);
+
+      if (cliente) {
+        this.api.DeleteData('Clientes', cliente.idCliente).then((res) => {
+          console.log('Cliente eliminado', res);
+          this.eliminarPersona(idPersona);
+        }).catch((err) => {
+          console.log('Error al eliminar Cliente', err);
+        });
+      } else {
+        this.api.GetData('Empleadoes').then((empleados) => {
+          const empleado = empleados.find((e) => e.idPersona === idPersona);
+
+          if (empleado) {
+            this.api.DeleteData('Empleadoes', empleado.idEmpleado).then((res) => {
+              console.log('Empleado eliminado', res);
+              this.eliminarPersona(idPersona);
+            }).catch((err) => {
+              console.log('Error al eliminar Empleado', err);
+            });
+          } else {
+            this.eliminarPersona(idPersona);
+          }
+        });
+      }
+    });
+  }
+
+  eliminarPersona(idPersona: number) {
+      this.api.DeleteData('personas', idPersona).then((res) => {
+      console.log('Persona eliminada', res);
+      this.ngOnInit();
+      Swal.fire(
+        'Eliminado',
+        'El registro ha sido eliminado con éxito.',
+        'success'
+      );
+    }).catch((err) => {
+      console.log('Error al eliminar Persona', err);
+      Swal.fire(
+        'Error',
+        'Hubo un error al intentar eliminar el registro.',
+        'error'
+      );
+    });
   }
 
 }
