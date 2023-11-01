@@ -1,0 +1,95 @@
+<div class="container">
+    <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+      <mat-card class="shipping-card">
+        <mat-card-header>
+          <mat-card-title>Registro empleados</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class="col">
+              <h3>DNI</h3>
+              <mat-form-field class="full-width">
+                <input matInput placeholder="DNI" formControlName="id">
+                <mat-error *ngIf="addressForm.controls['id'].hasError('required')">
+                  La identificación es <strong>Requerida</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col">
+              <h3>Nombre</h3>
+              <mat-form-field class="full-width">
+                <input matInput placeholder="nombre" formControlName="nombre">
+                <mat-error *ngIf="addressForm.controls['nombre'].hasError('required')">
+                  El nombre es <strong>Requerido</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <h3>Segundo nombre</h3>
+              <mat-form-field class="full-width">
+                <input matInput placeholder="segundo nombre" formControlName="nombre2">
+              </mat-form-field>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                <h3>Primer apellido</h3>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="apellido" formControlName="apellido">
+                    <mat-error *ngIf="addressForm.controls['apellido'].hasError('required')">
+                    El apellido es <strong>Requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+                </div>
+                <div class="col">
+                <h3>Segundo apellido</h3>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="segundo apellido" formControlName="apellido2">
+                    <mat-error *ngIf="addressForm.controls['apellido2'].hasError('required')">
+                    El segundo apellido es <strong>Requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                <h3>Correo</h3>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="correo" formControlName="correo">
+                    <mat-error *ngIf="addressForm.controls['correo'].hasError('required')">
+                    El correo es <strong>Requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+                </div>
+                <div class="col">
+                <h3>Telefono</h3>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="telefono" formControlName="telefono">
+                    <mat-error *ngIf="addressForm.controls['telefono'].hasError('required')">
+                    El telefono es <strong>Requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+                </div>
+                <div class="col">
+                <h3>Edad</h3>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="edad" formControlName="edad">
+                    <mat-error *ngIf="addressForm.controls['edad'].hasError('required')">
+                    La edad es <strong>Requerida</strong>
+                    </mat-error>
+                </mat-form-field>
+                </div>
+            
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" type="submit">{{titulo}}</button>
+        </mat-card-actions>
+        <mat-dialog-actions align="end">
+          <button mat-button mat-dialog-close>Cancel</button>
+      </mat-dialog-actions>
+      </mat-card>
+    </form>
+  </div>

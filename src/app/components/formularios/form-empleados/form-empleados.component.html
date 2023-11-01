@@ -102,8 +102,11 @@
           </div>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary" type="submit">Submit</button>
+          <button mat-raised-button color="primary" type="submit">{{titulo}}</button>
         </mat-card-actions>
+        <mat-dialog-actions align="end">
+          <button mat-button mat-dialog-close>Cancel</button>
+      </mat-dialog-actions>
       </mat-card>
     </form>
   </div>

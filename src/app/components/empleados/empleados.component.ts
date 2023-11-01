@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ServiceService } from 'src/app/services/service.service';
 import { FormEmpleadosComponent } from '../formularios/form-empleados/form-empleados.component';
 import { MatDialog } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
+import { ModalServiceService } from 'src/app/services/modal-service.service';
 
 @Component({
   selector: 'app-empleados',
@@ -17,7 +19,7 @@ export class EmpleadosComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(public api: ServiceService, public dialog: MatDialog) { }
+  constructor(public api:ServiceService, public dialog: MatDialog, public modularService: ModalServiceService){ }
   titulo = 'VISTA EMPLEADOS';
 
 
@@ -43,17 +45,56 @@ export class EmpleadosComponent implements OnInit {
   }
   
   editar(row: any) {
-    // Aquí debes implementar la lógica para editar el elemento
-    console.log('Editar', row);
+    this.modularService.accion.next("editar")
+    this.modularService.titulo = "Editar"
+    this.modularService.empleados = row;
+    this.dialog.open(FormEmpleadosComponent, {
+    });
   }
   
   eliminar(row: any) {
-    // Aquí debes implementar la lógica para eliminar el elemento
-    console.log('Eliminar', row);
-  }
-  openDialog(){
-    this.dialog.open(FormEmpleadosComponent,{
+    Swal.fire({
+      title: '¿Está seguro?',
+      text: 'No podrá revertir esto.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, elimínelo'
+    }).then((result) => {
+      if (result.isConfirmed) {
 
+        console.log(row.idEmpleado);
+
+        this.api.DeleteData("Empleadoes", row.idEmpleado).then((res) => {
+          console.log(res);
+          this.ngOnInit();
+          Swal.fire(
+            'Eliminado',
+            'El registro ha sido eliminado con éxito.',
+            'success'
+          );
+        }).catch((err) => {
+          console.log(err);
+          Swal.fire(
+            'Error',
+            'Hubo un error al intentar eliminar el registro.',
+            'error'
+          );
+        });
+
+      }
     });
   }
+ 
+  openDialog() {
+    this.modularService.accion.next("crear");
+    this.modularService.titulo = "Crear"
+    const dialogRef = this.dialog.open(FormEmpleadosComponent)
+
+    dialogRef.afterClosed().subscribe(res =>{
+      this.ngOnInit()
+    })
+  }
+
 }

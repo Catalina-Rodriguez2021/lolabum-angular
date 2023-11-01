@@ -4,3 +4,11 @@ export class ClientesModel {
     usuario:String;
     contrasena:String
 }
+export class ClientesModelUpdate{
+    idCliente:number;
+    idPersona:number;
+    usuario: String;
+    contrasena: number;
+    estado:boolean    
+
+}

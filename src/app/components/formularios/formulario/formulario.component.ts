@@ -1,5 +1,4 @@
 import { Component, OnInit, inject } from '@angular/core';
-
 import { FormBuilder, Validators } from '@angular/forms';
 import { CategoriaModel, CategoriaModelUpdate } from 'src/app/models/categoriaModel';
 import { ModalServiceService } from 'src/app/services/modal-service.service';

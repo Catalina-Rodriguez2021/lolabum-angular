@@ -29,7 +29,7 @@
           <div class="col">
             <h3>Nombre</h3>
             <mat-form-field class="full-width">
-              <input matInput placeholder="nombre" formControlName="nombre">
+              <input matInput placeholder="Nombre" formControlName="nombre">
               <mat-error *ngIf="addressForm.controls['nombre'].hasError('required')">
                 El nombre es <strong>Requerido</strong>
               </mat-error>
@@ -38,7 +38,7 @@
           <div class="col">
             <h3>Segundo nombre</h3>
             <mat-form-field class="full-width">
-              <input matInput placeholder="segundo nombre" formControlName="nombre2">
+              <input matInput placeholder="Segundo nombre" formControlName="nombre2">
             </mat-form-field>
           </div>
         </div>
@@ -46,7 +46,7 @@
           <div class="col">
             <h3>Primer apellido</h3>
             <mat-form-field class="full-width">
-              <input matInput placeholder="apellido" formControlName="apellido">
+              <input matInput placeholder="Apellido" formControlName="apellido">
               <mat-error *ngIf="addressForm.controls['apellido'].hasError('required')">
                 El apellido es <strong>Requerido</strong>
               </mat-error>
@@ -55,7 +55,7 @@
           <div class="col">
             <h3>Segundo apellido</h3>
             <mat-form-field class="full-width">
-              <input matInput placeholder="segundo apellido" formControlName="apellido2">
+              <input matInput placeholder="Segundo apellido" formControlName="apellido2">
               <mat-error *ngIf="addressForm.controls['apellido2'].hasError('required')">
                 El segundo apellido es <strong>Requerido</strong>
               </mat-error>
@@ -102,7 +102,7 @@
         </div>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="primary" type="submit">Submit</button>
+        <button mat-raised-button color="primary" type="submit">{{titulo}}</button>
       </mat-card-actions>
     </mat-card>
   </form>

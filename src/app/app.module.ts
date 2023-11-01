@@ -40,6 +40,7 @@ import { FormVehiculosComponent } from './components/formularios/form-vehiculos/
 import { FormPedidoComponent } from './components/formularios/form-pedido/form-pedido.component';
 import { FormEmpleadosComponent } from './components/formularios/form-empleados/form-empleados.component';
 import { FormConcesionariosComponent } from './components/formularios/form-concesionarios/form-concesionarios.component';
+import { FormPersonasComponent } from './components/formularios/form-personas/form-personas.component';
 
 
 
@@ -63,7 +64,8 @@ import { FormConcesionariosComponent } from './components/formularios/form-conce
     FormVehiculosComponent,
     FormPedidoComponent,
     FormEmpleadosComponent,
-    FormConcesionariosComponent
+    FormConcesionariosComponent,
+    FormPersonasComponent
     
   ],
   imports: [
