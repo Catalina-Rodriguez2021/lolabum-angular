@@ -1,21 +1,45 @@
-/* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 table {
-    width: 100%;
-  }
-  
-  mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
-  
-  td, th {
-    width: 25%;
-  }
+  width: 100%;
+}
+
+mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td,
+th {
+  width: 25%;
+}
+
+/* Cambia el color de los iconos personalizados en los botones */
+.custom-icon-delete {
+  color: rgb(172, 0, 0); /* Cambia el color a azul */
+}
+
+.custom-icon-edit {
+  color: rgb(81, 170, 192); /* Cambia el color a azul */
+}
 
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #7b9092;
+}

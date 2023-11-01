@@ -1,5 +1,5 @@
 <div class="container">
-    <h1>COMPRAR REALIZADAS</h1>
+    <h1>COMPRAS REALIZADAS</h1>
     <div class="contenedor">
         <mat-form-field>
             <mat-select placeholder="cliente">
@@ -22,7 +22,7 @@
 
     
     <mat-form-field>
-        <mat-label>Filter</mat-label>
+        <mat-label>Filtrar</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ejem. Carro compra" #input>
     </mat-form-field>
 
@@ -68,18 +68,6 @@
             <ng-container matColumnDef="concesionarioNombre">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Concesionario</th>
                 <td mat-cell *matCellDef="let row"> {{row.concesionarioNombre}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="opciones">
-                <th mat-header-cell *matHeaderCellDef> Opciones </th>
-                <td mat-cell *matCellDef="let row">
-                    <button mat-icon-button (click)="editar(row)">
-                        <mat-icon>edit</mat-icon>
-                    </button>
-                    <button mat-icon-button (click)="eliminar(row)">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

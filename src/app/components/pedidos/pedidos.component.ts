@@ -7,6 +7,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { FormPedidoComponent } from '../formularios/form-pedido/form-pedido.component';
 import { FacturaModel } from 'src/app/models/facturaModel';
 import Swal from 'sweetalert2';
+import { ModalServiceService } from 'src/app/services/modal-service.service';
+import { FormularioComponent } from '../formularios/formulario/formulario.component';
 
 @Component({
   selector: 'app-pedidos',
@@ -20,7 +22,7 @@ export class PedidosComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public api: ServiceService, public dialog: MatDialog) { }
+  constructor(public api: ServiceService, public dialog: MatDialog, public modalService:ModalServiceService) { }
   titulo = 'CARRITO DE COMPRAR';
   //Para actuvar el boton comprar cuando el diferente de null 
   //que significa que se tiene seleccionado un cliente
@@ -81,7 +83,11 @@ export class PedidosComponent implements OnInit {
   }
 
   editar(row: any) {
-    console.log('Editar', row);
+    this.modalService.accion.next("editar");
+    this.modalService.titulo = "Editar"
+    this.modalService.pedidos = row;
+    this.dialog.open(FormPedidoComponent,{
+    });
   }
 
   eliminar(row: any) {
@@ -115,8 +121,9 @@ export class PedidosComponent implements OnInit {
   }
 
   openDialog() {
+    this.modalService.accion.next("crear");
+    this.modalService.titulo = "Crear"
     this.dialog.open(FormPedidoComponent, {
-
     });
   }
 

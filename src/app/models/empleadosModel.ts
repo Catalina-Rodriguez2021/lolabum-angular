@@ -4,3 +4,11 @@ export class EmpleadosModel {
     usuario:String;
     contrasena:String
 }
+
+export class EmpleadosModelUpdate{
+    idEmpleado:number;
+    idPersona:number;
+    usuario: String;
+    contrasena: String;
+    estado:boolean    
+}

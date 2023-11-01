@@ -10,7 +10,7 @@ import { ServiceService } from 'src/app/services/service.service';
   styleUrls: ['./facturas.component.css']
 })
 export class FacturasComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['idPedido', 'pedido', 'clienteNombre', 'clienteApellido', 'vehiculoNombre', 'vehiculoPrecio', 'concesionarioNombre', 'opciones'];
+  displayedColumns: string[] = ['idPedido', 'pedido', 'clienteNombre', 'clienteApellido', 'vehiculoNombre', 'vehiculoPrecio', 'concesionarioNombre'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(); // Inicializar dataSource aquí
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

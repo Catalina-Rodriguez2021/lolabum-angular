@@ -39,10 +39,10 @@
                 <th mat-header-cell *matHeaderCellDef> Opciones </th>
                 <td mat-cell *matCellDef="let row">
                     <button mat-icon-button (click)="editar(row)">
-                        <mat-icon>edit</mat-icon>
+                        <mat-icon class="custom-icon-edit">edit</mat-icon>
                     </button>
                     <button mat-icon-button (click)="eliminar(row)">
-                        <mat-icon>delete</mat-icon>
+                        <mat-icon class="custom-icon-delete">delete</mat-icon>
                     </button>
                 </td>
             </ng-container>

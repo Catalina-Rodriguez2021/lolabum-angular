@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ServiceService } from 'src/app/services/service.service';
 import {MatDialog} from '@angular/material/dialog';
 import { FormClientesComponent } from '../formularios/form-clientes/form-clientes.component';
+import Swal from 'sweetalert2';
+import { ModalServiceService } from 'src/app/services/modal-service.service';
 
 @Component({
   selector: 'app-clientes',
@@ -16,10 +18,9 @@ export class ClientesComponent implements OnInit{
   displayedColumns: string[] = ['idCliente','usuario','identificacion','nombre1','nombre2','apellido1','apellido2','correo','telefono','edad','opciones'];
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(); // Inicializar dataSource aquí
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(public api:ServiceService, public dialog: MatDialog){ }
+  constructor(public api:ServiceService, public dialog: MatDialog, public modularService: ModalServiceService){ }
   titulo = 'VISTA CLIENTES';
 
 
@@ -43,20 +44,71 @@ export class ClientesComponent implements OnInit{
       this.dataSource.paginator.firstPage();
     }
   }
-
-  editar(row: any) {
-    // Aquí debes implementar la lógica para editar el elemento
-    console.log('Editar', row);
+  async editar(row: any) {
+    this.modularService.accion.next("editar");
+    this.modularService.titulo = "Editar";
+  
+    try {
+      const clienteData = await this.api.GetData('Clientes/' + row.idCliente);
+      this.modularService.clientes = clienteData;
+  
+      const personaData = await this.api.GetData('Personas/' + clienteData.idPersona);
+      this.modularService.personas = personaData;
+  
+      this.dialog.open(FormClientesComponent, {
+        data: { cliente: clienteData, persona: personaData },
+      });
+    } catch (error) {
+      console.error('Error al obtener datos:', error);
+    }
   }
   
-  eliminar(row: any) {
-    // Aquí debes implementar la lógica para eliminar el elemento
-    console.log('Eliminar', row);
-  }
 
-  openDialog(){
-    this.dialog.open(FormClientesComponent,{
+  eliminar(row: any) {
+    Swal.fire({
+      title: '¿Está seguro?',
+      text: 'No podrá revertir esto.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, elimínelo'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(row.idCliente);
+  
+        this.api.DeleteData("Clientes", row.idCliente).then((res) => {
+          console.log(res);
+          this.ngOnInit();
+          this.api.DeleteData("Personas",row.idPersona).then(res=>{
+            console.log(res);
+            Swal.fire(
+              'Eliminado',
+              'El registro ha sido eliminado con éxito.',
+              'success'
+            );
+          })
+        }).catch((err) => {
+          console.log(err);
+          Swal.fire(
+            'Error',
+            'Hubo un error al intentar eliminar el registro.',
+            'error'
+          );
+        });
+      }
     });
   }
   
+  openDialog() {
+    this.modularService.accion.next("crear");
+    this.modularService.titulo = "Crear"
+    const dialogRef = this.dialog.open(FormClientesComponent)
+
+    dialogRef.afterClosed().subscribe(res =>{
+      this.ngOnInit()
+    })
+  }
+
 }
+

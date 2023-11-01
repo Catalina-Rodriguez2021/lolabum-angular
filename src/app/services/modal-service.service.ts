@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { CategoriaModel, CategoriaModelUpdate } from '../models/categoriaModel';
-import { ClientesModel } from '../models/clientesModel';
+import { ClientesModel, ClientesModelUpdate } from '../models/clientesModel';
 import { ConsesionariosModel, ConsesionariosModelUpdate } from '../models/concesionariosModel';
-import { EmpleadosModel } from '../models/empleadosModel';
+import { EmpleadosModel, EmpleadosModelUpdate } from '../models/empleadosModel';
 import { FacturaModel } from '../models/facturaModel';
-import { PedidosModel } from '../models/pedidosModel';
-import { PersonasModel } from '../models/personalsModel';
+import { PedidoUpdateModel, PedidosModel } from '../models/pedidosModel';
+import { PersonasModel, PersonasModelUpdate } from '../models/personalsModel';
 import { VehiculosModel, VehiculosModelUpdate } from '../models/vehiculosModel';
 import { BehaviorSubject } from 'rxjs';
 
@@ -15,12 +15,12 @@ import { BehaviorSubject } from 'rxjs';
 export class ModalServiceService {
 
   categorias:CategoriaModelUpdate;
-  clientes:ClientesModel;
+  clientes:ClientesModelUpdate;
   concesionario:ConsesionariosModelUpdate;
-  empleados:EmpleadosModel;
+  empleados:EmpleadosModelUpdate;
   facturas:FacturaModel;
-  pedidos:PedidosModel;
-  personas:PersonasModel;
+  pedidos:PedidoUpdateModel;
+  personas:PersonasModelUpdate;
   vehiculos:VehiculosModelUpdate;
 
   id:number;

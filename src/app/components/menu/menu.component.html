@@ -3,14 +3,38 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="categoria">CATEGORIAS</a>
-      <a mat-list-item href="clientes">CLIENTES</a>
-      <a mat-list-item href="concesionarios">CONCESIONARIOS</a>
-      <a mat-list-item href="empleados">EMPLEADOS</a>
-      <a mat-list-item href="facturas">FACTURAS</a>
-      <a mat-list-item href="pedidos">PEDIDOS</a>
-      <a mat-list-item href="personas">PERSONAS</a>
-      <a mat-list-item href="vehiculos">VEHICULOS</a>
+      <a mat-list-item href="categoria">
+        <mat-icon>category</mat-icon>
+        CATEGORIAS
+      </a>
+      <a mat-list-item href="clientes">
+        <mat-icon>people</mat-icon>
+        CLIENTES
+      </a>
+      <a mat-list-item href="concesionarios">
+        <mat-icon>business</mat-icon>
+        CONCESIONARIOS
+      </a>
+      <a mat-list-item href="empleados">
+        <mat-icon>work</mat-icon>
+        EMPLEADOS
+      </a>
+      <a mat-list-item href="facturas">
+        <mat-icon>receipt</mat-icon>
+        FACTURAS
+      </a>
+      <a mat-list-item href="pedidos">
+        <mat-icon>shopping_cart</mat-icon>
+        PEDIDOS
+      </a>
+      <a mat-list-item href="personas">
+        <mat-icon>person</mat-icon>
+        PERSONAS
+      </a>
+      <a mat-list-item href="vehiculos">
+        <mat-icon>directions_car</mat-icon>
+        VEHICULOS
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
