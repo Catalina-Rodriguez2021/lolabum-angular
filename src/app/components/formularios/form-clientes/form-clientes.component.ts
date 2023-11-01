@@ -43,8 +43,8 @@ export class FormClientesComponent implements OnInit {
     telefono: null
   }
 
-  empleados: EmpleadosModelUpdate = {
-    idEmpleado: null,
+  clientes: ClientesModelUpdate = {
+    idCliente: null,
     idPersona: null,
     usuario: null,
     contrasena: null,
@@ -60,7 +60,7 @@ export class FormClientesComponent implements OnInit {
   isEdit: boolean = false;
   ngOnInit(): void {
     console.log(this.modularService.accion.value)
-    console.log(this.modularService.empleados)
+    console.log(this.modularService.clientes)
     console.log(this.modularService.personas)
     if (this.modularService.accion.value == "editar") {
       this.isEdit = true;
@@ -90,10 +90,10 @@ export class FormClientesComponent implements OnInit {
         this.modularService.personas.telefono
       );
       this.addressForm.controls['usuario'].setValue(
-        this.modularService.empleados.usuario + ''
+        this.modularService.clientes.usuario + ''
       );
       this.addressForm.controls['password'].setValue(
-        this.modularService.empleados.contrasena + ''
+        this.modularService.clientes.contrasena + ''
       );
     }
     this.titulo = this.modularService.titulo;
@@ -148,7 +148,7 @@ export class FormClientesComponent implements OnInit {
           this.DataCliente.usuario = this.addressForm.controls['usuario'].value;
           this.DataCliente.contrasena = this.addressForm.controls['password'].value
           console.log(this.DataCliente);
-          //enviar datos a post de empleados
+          //enviar datos a post de clientes
           this.api.PostData('Clientes', this.DataCliente).then((res) => {
             console.log(res)
             //aletar registro exitoso
@@ -201,14 +201,14 @@ export class FormClientesComponent implements OnInit {
           console.log(res);
           //cuando se complete la promesa correctamente ahora se debe agregar un cliente a esa persona
           //se instancia los datos del cliente con los datos del formulario
-          this.empleados.idPersona = this.modularService.personas.idPersona;
-          this.empleados.usuario = this.addressForm.controls['usuario'].value;
-          this.empleados.contrasena = this.addressForm.controls['password'].value;
-          this.empleados.estado = true;
-          this.empleados.idEmpleado = this.modularService.empleados.idEmpleado;
-          console.log(this.empleados);
-          //enviar datos a post de empleados
-          this.api.updateData('Clientes', this.empleados.idEmpleado,this.empleados).then((res) => {
+          this.clientes.idPersona = this.modularService.personas.idPersona;
+          this.clientes.usuario = this.addressForm.controls['usuario'].value;
+          this.clientes.contrasena = this.addressForm.controls['password'].value;
+          this.clientes.estado = true;
+          this.clientes.idCliente = this.modularService.clientes.idCliente;
+          console.log(this.clientes);
+          //enviar datos a post de clientes
+          this.api.updateData('Clientes', this.clientes.idCliente,this.clientes).then((res) => {
             console.log(res)
             //aletar registro exitoso
             Swal.fire(
