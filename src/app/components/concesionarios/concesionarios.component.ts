@@ -58,8 +58,15 @@ export class ConcesionariosComponent implements OnInit {
     this.modularService.accion.next("editar")
     this.modularService.titulo = "Editar"
     this.modularService.concesionario = row;
-    this.dialog.open(FormConcesionariosComponent, {
+
+    const dialogRef = this.dialog.open(FormConcesionariosComponent, {
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed'+result);
+      this.ngOnInit();
+    });
+
   }
 
   eliminar(row: any) {
@@ -111,11 +118,14 @@ export class ConcesionariosComponent implements OnInit {
   openDialog() {
     this.modularService.accion.next("crear");
     this.modularService.titulo = "Crear"
-    const dialogRef = this.dialog.open(FormConcesionariosComponent)
 
-    dialogRef.afterClosed().subscribe(res =>{
-      this.ngOnInit()
-    })
+    const dialogRef = this.dialog.open(FormConcesionariosComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed'+result);
+      this.ngOnInit();
+    });
   }
 
 }

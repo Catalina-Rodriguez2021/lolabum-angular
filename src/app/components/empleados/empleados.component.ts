@@ -54,9 +54,12 @@ export class EmpleadosComponent implements OnInit {
   
       const personaData = await this.api.GetData('Personas/' + empleadoData.idPersona);
       this.modularService.personas = personaData;
+      const dialogRef = this.dialog.open(FormEmpleadosComponent, {
+      });
   
-      this.dialog.open(FormEmpleadosComponent, {
-        data: { cliente: empleadoData, persona: personaData },
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed'+result);
+        this.ngOnInit();
       });
     } catch (error) {
       console.error('Error al obtener datos:', error);
@@ -104,11 +107,13 @@ export class EmpleadosComponent implements OnInit {
   openDialog() {
     this.modularService.accion.next("crear");
     this.modularService.titulo = "Crear"
-    const dialogRef = this.dialog.open(FormEmpleadosComponent)
+    const dialogRef = this.dialog.open(FormEmpleadosComponent, {
+    });
 
-    dialogRef.afterClosed().subscribe(res =>{
-      this.ngOnInit()
-    })
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed'+result);
+      this.ngOnInit();
+    });
   }
 
 }

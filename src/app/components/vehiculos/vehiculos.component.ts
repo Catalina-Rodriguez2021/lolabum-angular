@@ -48,7 +48,12 @@ export class VehiculosComponent implements OnInit{
     this.modularService.accion.next("editar");
     this.modularService.titulo = "Editar";
     this.modularService.vehiculos = row;
-    this.dialog.open(FormVehiculosComponent,{
+    const dialogRef = this.dialog.open(FormVehiculosComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed'+result);
+      this.ngOnInit();
     });
   }
 
@@ -86,7 +91,12 @@ export class VehiculosComponent implements OnInit{
   openDialog(){
     this.modularService.accion.next("crear");
     this.modularService.titulo = "Crear"
-    this.dialog.open(FormVehiculosComponent,{
+    const dialogRef = this.dialog.open(FormVehiculosComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed'+result);
+      this.ngOnInit();
     });
   }
 }

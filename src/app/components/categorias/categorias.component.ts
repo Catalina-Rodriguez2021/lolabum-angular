@@ -53,8 +53,15 @@ export class CategoriasComponent implements OnInit, AfterViewInit {
     this.modalService.accion.next("editar");
     this.modalService.titulo = "Editar"
     this.modalService.categorias = row;
-    this.dialog.open(FormularioComponent,{
+
+    const dialogRef = this.dialog.open(FormularioComponent, {
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed'+result);
+      this.ngOnInit();
+    });
+
   }
   
   eliminar(row: any) {
@@ -104,9 +111,14 @@ export class CategoriasComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit(){
-    this.modalService.accion.next("editar");
+    this.modalService.accion.next("crear");
     this.modalService.titulo = "Crear"
-    this.dialog.open(FormularioComponent,{
+    const dialogRef = this.dialog.open(FormularioComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed'+result);
+      this.ngOnInit();
     });
   }
 

@@ -86,7 +86,12 @@ export class PedidosComponent implements OnInit {
     this.modalService.accion.next("editar");
     this.modalService.titulo = "Editar"
     this.modalService.pedidos = row;
-    this.dialog.open(FormPedidoComponent,{
+    const dialogRef = this.dialog.open(FormPedidoComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed'+result);
+      this.ngOnInit();
     });
   }
 
@@ -123,7 +128,12 @@ export class PedidosComponent implements OnInit {
   openDialog() {
     this.modalService.accion.next("crear");
     this.modalService.titulo = "Crear"
-    this.dialog.open(FormPedidoComponent, {
+    const dialogRef = this.dialog.open(FormPedidoComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed'+result);
+      this.ngOnInit();
     });
   }
 

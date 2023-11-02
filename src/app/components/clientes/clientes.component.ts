@@ -47,6 +47,7 @@ export class ClientesComponent implements OnInit{
   async editar(row: any) {
     this.modularService.accion.next("editar");
     this.modularService.titulo = "Editar";
+
   
     try {
       const clienteData = await this.api.GetData('Clientes/' + row.idCliente);
@@ -55,8 +56,12 @@ export class ClientesComponent implements OnInit{
       const personaData = await this.api.GetData('Personas/' + clienteData.idPersona);
       this.modularService.personas = personaData;
   
-      this.dialog.open(FormClientesComponent, {
-        data: { cliente: clienteData, persona: personaData },
+      const dialogRef = this.dialog.open(FormClientesComponent, {
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed'+result);
+        this.ngOnInit();
       });
     } catch (error) {
       console.error('Error al obtener datos:', error);
@@ -103,11 +108,13 @@ export class ClientesComponent implements OnInit{
   openDialog() {
     this.modularService.accion.next("crear");
     this.modularService.titulo = "Crear"
-    const dialogRef = this.dialog.open(FormClientesComponent)
+    const dialogRef = this.dialog.open(FormClientesComponent, {
+    });
 
-    dialogRef.afterClosed().subscribe(res =>{
-      this.ngOnInit()
-    })
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed'+result);
+      this.ngOnInit();
+    });
   }
 
 }
