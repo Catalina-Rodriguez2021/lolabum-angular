@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "lolabum-angular",
+    "lolabum-angular": "lolabum-angular"
+  },
+  "targets": {},
+  "etags": {}
+}

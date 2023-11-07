@@ -1,0 +1,9 @@
+.example-card {
+    max-width: 400px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://images.prismic.io/encurva/7e27900e-b16c-455e-89a2-bb296ee1564c_cuanto-cuesta-recargar-vehiculo-electrico-1.jpeg?auto=compress,format&rect=0,13,600,375&w=800&h=500');
+    background-size: cover;
+  }
+  

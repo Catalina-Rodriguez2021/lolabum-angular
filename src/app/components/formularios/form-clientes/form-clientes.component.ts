@@ -29,7 +29,6 @@ export class FormClientesComponent implements OnInit {
     correo: null,
     telefono: null,
     estado: null
-
   }
 
   DataPersonas: PersonasModel = {

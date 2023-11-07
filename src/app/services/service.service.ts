@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class ServiceService {
 
   constructor(public api:HttpClient) {   }
-  Url="https://localhost:7090/api/"
+  Url="https://2suysazpa1.execute-api.us-east-2.amazonaws.com/Prod/api/"
   
   public async GetData (endpoint: String){
     var response;

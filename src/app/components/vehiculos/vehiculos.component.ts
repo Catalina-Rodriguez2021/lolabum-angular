@@ -7,14 +7,19 @@ import { ServiceService } from 'src/app/services/service.service';
 import { FormVehiculosComponent } from '../formularios/form-vehiculos/form-vehiculos.component';
 import Swal from 'sweetalert2';
 import { ModalServiceService } from 'src/app/services/modal-service.service';
+import { DashboardComponent } from '../dashboard/dashboard.component';
+import { VistaVehiculoComponent } from '../vista-vehiculo/vista-vehiculo.component';
+
 
 @Component({
   selector: 'app-vehiculos',
   templateUrl: './vehiculos.component.html',
   styleUrls: ['./vehiculos.component.css']
 })
+
+
 export class VehiculosComponent implements OnInit{
-  displayedColumns: string[] = ['idVehiculos', 'nombre','precio','opciones'];
+  displayedColumns: string[] = ['seleccionar','idVehiculos', 'nombre','precio','opciones'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(); // Inicializar dataSource aquí
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -92,6 +97,19 @@ export class VehiculosComponent implements OnInit{
     this.modularService.accion.next("crear");
     this.modularService.titulo = "Crear"
     const dialogRef = this.dialog.open(FormVehiculosComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed'+result);
+      this.ngOnInit();
+    });
+  }
+
+  verVehiculo(row:any){
+    const dialogRef = this.dialog.open(VistaVehiculoComponent, {
+      height: '57%',
+      width: '20%',
+      data: {vehiculoInfo : row}
     });
 
     dialogRef.afterClosed().subscribe(result => {
