@@ -1,1 +1,6 @@
-<app-menu></app-menu>
+<ng-container *ngIf="modularService.mostrarMenu; else loginTemplate">
+    <app-menu></app-menu>
+</ng-container>
+<ng-template #loginTemplate>
+    <app-login></app-login>
+</ng-template>

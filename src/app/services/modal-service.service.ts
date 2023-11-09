@@ -26,5 +26,6 @@ export class ModalServiceService {
   id:number;
   titulo:String;
   accion = new BehaviorSubject("");
+
   constructor() { }
 }

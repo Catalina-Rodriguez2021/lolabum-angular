@@ -40,4 +40,12 @@ export class ServiceService {
     })
     return response
   }
+
+  public async login(usuario: string, contrasena: string) {
+    var response;
+    await this.api.get(`${this.Url}Clientes/${usuario}/${contrasena}`).toPromise().then(res=>{
+      response = res
+    });
+    return response
+  }
 }

@@ -12,6 +12,7 @@ import { FormularioComponent } from './components/formularios/formulario/formula
 import { FormClientesComponent } from './components/formularios/form-clientes/form-clientes.component';
 import { FormEmpleadosComponent } from './components/formularios/form-empleados/form-empleados.component';
 import { FormConcesionariosComponent } from './components/formularios/form-concesionarios/form-concesionarios.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   {
