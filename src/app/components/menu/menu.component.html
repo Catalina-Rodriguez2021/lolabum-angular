@@ -45,8 +45,11 @@
       </button>
       <span>lolabum-angular</span>
       <div class="icon">
-        <ngx-avatars bgColor="#400E37" class="ngx-icon" name="{{nombre}}"></ngx-avatars>
-      </div>
+          <button mat-button [matMenuTriggerFor]="menu" ><ngx-avatars bgColor="#400E37" class="ngx-icon" name="{{nombre}}"></ngx-avatars></button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="cerrarSesion()">Cerrar sesión</button>
+          </mat-menu>
+      </div>    
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

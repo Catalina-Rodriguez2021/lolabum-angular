@@ -1,3 +1,64 @@
-.full-width-table {
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.shipping-card {
+  width: 400px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.full-width {
   width: 100%;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.col {
+  flex: 1;
+  margin: 0 10px;
+}
+
+h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-error {
+  color: red;
+  font-size: 14px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  margin-top: 10px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  margin-top: 10px;
+  background-color: rgb(123, 144, 146); /* Button background color */
+  color: #fff; /* Button text color */
+  border: none;
+}
+
+button[type="submit"]:hover {
+  background-color: rgb(99, 115, 117); /* Button background color on hover */
+}
+
+a {
+  text-decoration: none;
+  color: rgb(99, 115, 117);
 }

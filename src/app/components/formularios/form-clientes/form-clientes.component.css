@@ -29,3 +29,27 @@
 .container{
   margin: 40px;
 }
+
+/* Estilos para el contenedor del botón */
+.botonRegresar {
+  margin: 20px; /* Espacio exterior alrededor del botón */
+}
+
+/* Estilos para el botón habilitado */
+.botonRegresar button:enabled {
+  background-color: #7A8F91; /* Color de fondo cuando está habilitado */
+  color: #fff; /* Color de texto cuando está habilitado */
+  border: none; /* Elimina el borde */
+  padding: 10px 20px; /* Espaciado interno */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+}
+
+/* Estilos para ocultar el botón deshabilitado */
+.botonRegresar button:disabled {
+  display: none; /* Oculta el botón cuando está deshabilitado */
+}
+
+/* Cambia los estilos al pasar el mouse por encima */
+.botonRegresar button:hover:enabled {
+  background-color: #7A8F91; /* Color de fondo cuando está habilitado y se pasa el mouse */
+}

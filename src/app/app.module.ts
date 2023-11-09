@@ -41,6 +41,7 @@ import { FormPedidoComponent } from './components/formularios/form-pedido/form-p
 import { FormEmpleadosComponent } from './components/formularios/form-empleados/form-empleados.component';
 import { FormConcesionariosComponent } from './components/formularios/form-concesionarios/form-concesionarios.component';
 import { VistaVehiculoComponent } from './components/vista-vehiculo/vista-vehiculo.component';
+import { MainComponent } from './components/main/main.component';
 
 
 
@@ -65,7 +66,8 @@ import { VistaVehiculoComponent } from './components/vista-vehiculo/vista-vehicu
     FormPedidoComponent,
     FormEmpleadosComponent,
     FormConcesionariosComponent,
-    VistaVehiculoComponent
+    VistaVehiculoComponent,
+    MainComponent
     
   ],
   imports: [

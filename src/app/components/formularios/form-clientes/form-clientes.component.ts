@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ClientesModel, ClientesModelUpdate } from 'src/app/models/clientesModel';
 import { EmpleadosModelUpdate } from 'src/app/models/empleadosModel';
 import { PersonasModel, PersonasModelUpdate } from 'src/app/models/personalsModel';
+import { LocalStorageService } from 'src/app/services/local-storage-service.service';
 import { ModalServiceService } from 'src/app/services/modal-service.service';
 import { ServiceService } from 'src/app/services/service.service';
 import Swal from 'sweetalert2';
@@ -14,8 +15,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./form-clientes.component.css']
 })
 export class FormClientesComponent implements OnInit {
-  constructor(public api: ServiceService, public modularService: ModalServiceService) { }
-  titulo: String = ""
+  constructor(public api: ServiceService, public modularService: ModalServiceService,private localStorageService: LocalStorageService) {
+    this.habilitado = localStorageService.getItem("isRegistered")
+   }
+  titulo: String = "Registrar"
+  habilitado:boolean = true
 
 
   personas: PersonasModelUpdate = {
@@ -94,8 +98,9 @@ export class FormClientesComponent implements OnInit {
       this.addressForm.controls['password'].setValue(
         this.modularService.clientes.contrasena + ''
       );
+      this.titulo = this.modularService.titulo;
     }
-    this.titulo = this.modularService.titulo;
+    
   }
 
   private fb = inject(FormBuilder);
@@ -241,5 +246,11 @@ export class FormClientesComponent implements OnInit {
       }
     }
 
+  }
+
+  realizarAccion(){
+    this.localStorageService.setItem('isLoggedIn', false);
+    this.localStorageService.setItem('isRegistered', false);
+    location.reload();
   }
 }

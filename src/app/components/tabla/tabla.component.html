@@ -1,26 +1,48 @@
-<div class="mat-elevation-z8">
-  <table mat-table class="full-width-table" matSort aria-label="Elements">
-    <!-- Id Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-      <td mat-cell *matCellDef="let row">{{row.id}}</td>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-      <td mat-cell *matCellDef="let row">{{row.name}}</td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-
-  <mat-paginator #paginator
-      [length]="dataSource.data.length"
-      [pageIndex]="0"
-      [pageSize]="10"
-      [pageSizeOptions]="[5, 10, 20]"
-      aria-label="Select page">
-  </mat-paginator>
+<div class="container">
+  <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-card class="shipping-card">
+      <mat-card-header>
+        <mat-card-title>{{titulo}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col">
+            <h3>Usuario</h3>
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Usuario" formControlName="usuario">
+              <mat-error *ngIf="addressForm.controls['usuario'].hasError('required')">
+                El usuario es <strong>Requerido</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h3>Contraseña</h3>
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Contraseña" formControlName="contrasena" type="password">
+              <mat-error *ngIf="addressForm.controls['contrasena'].hasError('required')">
+                La contraseña es <strong>Requerida</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <!-- Agregar opción para "Crear cuenta" -->
+            <a (click)="crearCuenta()">Crear cuenta</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <!-- Agregar opción para "Recuperar contraseña" -->
+            <a routerLink="/clientes">Recuperar contraseña</a>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">{{titulo}}</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
 </div>
