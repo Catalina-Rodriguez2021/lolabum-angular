@@ -25,9 +25,11 @@ export class CategoriasComponent implements OnInit, AfterViewInit {
   loading:boolean = false;
 
   ngOnInit() {
+    this.loading = true;
     this.api.GetData('Categoriums').then((res) => {
       this.dataSource.data = res;
       console.log(this.dataSource.data)
+      this.loading = false;
     });
     this.api.GetData('Vehiculoes').then((res) => {
       this.vehiculos = res;

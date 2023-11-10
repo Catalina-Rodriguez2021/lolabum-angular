@@ -21,12 +21,14 @@ export class EmpleadosComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   constructor(public api:ServiceService, public dialog: MatDialog, public modularService: ModalServiceService){ }
   titulo = 'VISTA EMPLEADOS';
-
+  loading:boolean = false;
 
   ngOnInit() {
+    this.loading = true;
     this.api.GetData('Empleadoes').then((res)=>{
       this.dataSource.data = res
       console.log(this.dataSource.data)
+      this.loading = false;
     })
   }
 

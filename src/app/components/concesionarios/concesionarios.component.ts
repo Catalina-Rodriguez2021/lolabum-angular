@@ -24,12 +24,14 @@ export class ConcesionariosComponent implements OnInit {
   constructor(public api: ServiceService, public dialog: MatDialog, public modularService: ModalServiceService) { }
   titulo = 'VISTA CONCESIONARIOS';
   vehiculos = []
-
+  loading:boolean = false;
 
   ngOnInit() {
+    this.loading = true;
     this.api.GetData('Concescionarios').then((res) => {
       this.dataSource.data = res;
       console.log(this.dataSource.data)
+      this.loading = false
     });
 
     this.api.GetData('Vehiculoes').then((res) => {

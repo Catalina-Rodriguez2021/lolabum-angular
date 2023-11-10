@@ -22,12 +22,14 @@ export class ClientesComponent implements OnInit{
   @ViewChild(MatSort) sort: MatSort;
   constructor(public api:ServiceService, public dialog: MatDialog, public modularService: ModalServiceService){ }
   titulo = 'VISTA CLIENTES';
-
+  loading = false;
 
   ngOnInit(){
+    this.loading = true;
     this.api.GetData('Clientes').then((res)=>{
       this.dataSource.data = res;
       console.log(this.dataSource.data)
+      this.loading = false
     })
   }
 
@@ -48,7 +50,6 @@ export class ClientesComponent implements OnInit{
     this.modularService.accion.next("editar");
     this.modularService.titulo = "Editar";
 
-  
     try {
       const clienteData = await this.api.GetData('Clientes/' + row.idCliente);
       this.modularService.clientes = clienteData;

@@ -27,11 +27,13 @@ export class VehiculosComponent implements OnInit{
 
   constructor(public api:ServiceService, public dialog: MatDialog, public modularService:ModalServiceService){ }
   titulo = 'VISTA VEHICULOS';
-
+  loading:boolean = false;
   ngOnInit(){
+    this.loading = true;
     this.api.GetData('Vehiculoes').then((res)=>{
       this.dataSource.data = res;
       console.log(this.dataSource.data)
+      this.loading = false;
     })
   }
 

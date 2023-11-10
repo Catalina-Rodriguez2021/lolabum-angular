@@ -17,13 +17,14 @@ export class FacturasComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   constructor(public api: ServiceService) { }
   titulo = 'VISTA FACTURA';
-
+  loading:boolean = false;
   clientes = []
   facturas = []
   facturasFull = []
   pedidosFull = []
   pedidos = []
   ngOnInit(){
+    this.loading = true;
     this.api.GetData('facturas').then((res)=>{
       this.facturasFull = res;
       this.facturas = res;
@@ -38,6 +39,7 @@ export class FacturasComponent implements OnInit, AfterViewInit {
       this.pedidosFull = res;
       this.dataSource.data = res;
       console.log(this.pedidosFull)
+      this.loading = false;
     })
   }
 

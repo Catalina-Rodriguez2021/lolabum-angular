@@ -1,96 +1,103 @@
-<div class="container">
-    <div class="tittle"><h2>{{titulo}}</h2></div>
-    <mat-form-field>
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-    </mat-form-field>
-
-    <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="dataSource" matSort>
-
-            <!-- ID Column -->
-            <ng-container matColumnDef="idCliente">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-                <td mat-cell *matCellDef="let row"> {{row.idCliente}} </td>
-            </ng-container>
-
-            <!-- Progress Column -->
-            <ng-container matColumnDef="usuario">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
-                <td mat-cell *matCellDef="let row"> {{row.usuario}} </td>
-            </ng-container>
-
-            <!-- Progress Column -->
-            <ng-container matColumnDef="identificacion">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> DNI </th>
-                <td mat-cell *matCellDef="let row"> {{row.identificacion}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="nombre1">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Primer nombre </th>
-                <td mat-cell *matCellDef="let row"> {{row.nombre1}} </td>
-            </ng-container>
-
-            <!-- Progress Column -->
-            <ng-container matColumnDef="nombre2">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Segundo nombre </th>
-                <td mat-cell *matCellDef="let row"> {{row.nombre2}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="apellido1">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Primer Apellido </th>
-                <td mat-cell *matCellDef="let row"> {{row.apellido1}} </td>
-            </ng-container>
-
-            <!-- Progress Column -->
-            <ng-container matColumnDef="apellido2">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Segundo Apellido</th>
-                <td mat-cell *matCellDef="let row"> {{row.apellido2}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="edad">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Edad </th>
-                <td mat-cell *matCellDef="let row"> {{row.edad}} </td>
-            </ng-container>
-
-            <!-- Progress Column -->
-            <ng-container matColumnDef="correo">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo </th>
-                <td mat-cell *matCellDef="let row"> {{row.correo}} </td>
-            </ng-container>
-
-            <!-- Progress Column -->
-            <ng-container matColumnDef="telefono">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Telefono </th>
-                <td mat-cell *matCellDef="let row"> {{row.telefono}} </td>
-            </ng-container>
-
-
-            <ng-container matColumnDef="opciones">
-                <th mat-header-cell *matHeaderCellDef> Opciones </th>
-                <td mat-cell *matCellDef="let row">
-                    <button mat-icon-button (click)="editar(row)">
-                        <mat-icon class="custom-icon-edit">edit</mat-icon>
-                    </button>
-                    <button mat-icon-button (click)="eliminar(row)">
-                        <mat-icon class="custom-icon-delete">delete</mat-icon>
-                    </button>
-                </td>
-            </ng-container>
-
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-            <!-- Row shown when there is no matching data. -->
-            <tr class="mat-row" *matNoDataRow>
-                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-            </tr>
-        </table>
-
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
-    </div>
-    <div class="crear">
-        <button mat-button (click)="openDialog()">Abrir formulario</button>
-    </div>
+<div *ngIf="loading; else content">
+    <app-loading></app-loading>
 </div>
+<ng-template #content>
+    <div class="container">
+        <div class="tittle">
+            <h2>{{titulo}}</h2>
+        </div>
+        <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+        </mat-form-field>
+
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="idCliente">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                    <td mat-cell *matCellDef="let row"> {{row.idCliente}} </td>
+                </ng-container>
+
+                <!-- Progress Column -->
+                <ng-container matColumnDef="usuario">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
+                    <td mat-cell *matCellDef="let row"> {{row.usuario}} </td>
+                </ng-container>
+
+                <!-- Progress Column -->
+                <ng-container matColumnDef="identificacion">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> DNI </th>
+                    <td mat-cell *matCellDef="let row"> {{row.identificacion}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="nombre1">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Primer nombre </th>
+                    <td mat-cell *matCellDef="let row"> {{row.nombre1}} </td>
+                </ng-container>
+
+                <!-- Progress Column -->
+                <ng-container matColumnDef="nombre2">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Segundo nombre </th>
+                    <td mat-cell *matCellDef="let row"> {{row.nombre2}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="apellido1">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Primer Apellido </th>
+                    <td mat-cell *matCellDef="let row"> {{row.apellido1}} </td>
+                </ng-container>
+
+                <!-- Progress Column -->
+                <ng-container matColumnDef="apellido2">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Segundo Apellido</th>
+                    <td mat-cell *matCellDef="let row"> {{row.apellido2}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="edad">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Edad </th>
+                    <td mat-cell *matCellDef="let row"> {{row.edad}} </td>
+                </ng-container>
+
+                <!-- Progress Column -->
+                <ng-container matColumnDef="correo">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo </th>
+                    <td mat-cell *matCellDef="let row"> {{row.correo}} </td>
+                </ng-container>
+
+                <!-- Progress Column -->
+                <ng-container matColumnDef="telefono">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Telefono </th>
+                    <td mat-cell *matCellDef="let row"> {{row.telefono}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="opciones">
+                    <th mat-header-cell *matHeaderCellDef> Opciones </th>
+                    <td mat-cell *matCellDef="let row">
+                        <button mat-icon-button (click)="editar(row)">
+                            <mat-icon class="custom-icon-edit">edit</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="eliminar(row)">
+                            <mat-icon class="custom-icon-delete">delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                <!-- Row shown when there is no matching data. -->
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                </tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+        <div class="crear">
+            <button mat-button (click)="openDialog()">Abrir formulario</button>
+        </div>
+    </div>
+</ng-template>

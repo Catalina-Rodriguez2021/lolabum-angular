@@ -21,11 +21,13 @@ export class PersonasComponent  implements OnInit{
 
   
   titulo = 'VISTA PERSONAS';
-
+  loading:boolean = false;
   ngOnInit(){
+    this.loading = true;
     this.api.GetData('personas').then((res)=>{
       this.dataSource.data = res;
       console.log(this.dataSource.data)
+      this.loading = false;
     })
   }
 

@@ -23,6 +23,7 @@ export class PedidosComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(public api: ServiceService, public dialog: MatDialog, public modalService:ModalServiceService) { }
+  loading:boolean = false;
   titulo = 'CARRITO DE COMPRAR';
   //Para actuvar el boton comprar cuando el diferente de null 
   //que significa que se tiene seleccionado un cliente
@@ -52,9 +53,11 @@ export class PedidosComponent implements OnInit {
   idCliente:number;
 
   ngOnInit() {
+    this.loading = true;
     this.api.GetData('VistaPedidoConDato').then((res) => {
       this.pedidoCompleto = res;
       this.dataSource.data = res;
+      this.loading = false
     })
 
     this.api.GetData("Clientes").then((res) => {

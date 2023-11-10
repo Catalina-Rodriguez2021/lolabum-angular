@@ -1,96 +1,100 @@
-<div class="container">
-    <div class="tittle">
-        <h2>{{titulo}}</h2>
-    </div>
-    <mat-form-field>
-        <mat-label>Filtrar</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ejem. Carro compra" #input>
-    </mat-form-field>
-
-    <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="dataSource" matSort>
-
-            <!-- ID Column -->
-            <ng-container matColumnDef="idPedido">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-                <td mat-cell *matCellDef="let row"> {{row.idPedido}} </td>
-            </ng-container>
-
-            <!-- ID Column -->
-            <ng-container matColumnDef="pedido">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Pedido </th>
-                <td mat-cell *matCellDef="let row"> {{row.pedido}} </td>
-            </ng-container>
-
-
-            <ng-container matColumnDef="clienteNombre">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Cliente </th>
-                <td mat-cell *matCellDef="let row"> {{row.clienteNombre}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="clienteApellido">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido Cliente </th>
-                <td mat-cell *matCellDef="let row"> {{row.clienteApellido}} </td>
-            </ng-container>
-
-
-            <ng-container matColumnDef="vehiculoNombre">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Vehículo</th>
-                <td mat-cell *matCellDef="let row"> {{row.vehiculoNombre}} </td>
-            </ng-container>
-
-            <!-- Progress Column -->
-            <ng-container matColumnDef="vehiculoPrecio">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio Vehículo</th>
-                <td mat-cell *matCellDef="let row"> {{row.vehiculoPrecio}} </td>
-            </ng-container>
-
-
-            <ng-container matColumnDef="concesionarioNombre">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Concesionario</th>
-                <td mat-cell *matCellDef="let row"> {{row.concesionarioNombre}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="opciones">
-                <th mat-header-cell *matHeaderCellDef> Opciones </th>
-                <td mat-cell *matCellDef="let row">
-                    <button mat-icon-button (click)="editar(row)">
-                        <mat-icon class="custom-icon-edit">edit</mat-icon>
-                    </button>
-                    <button mat-icon-button (click)="eliminar(row)">
-                        <mat-icon class="custom-icon-delete">delete</mat-icon>
-                    </button>
-                </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-            <!-- Row shown when there is no matching data. -->
-            <tr class="mat-row" *matNoDataRow>
-                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-            </tr>
-        </table>
-
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
-    </div>
-    <div class="contenedor">
-        <mat-form-field>
-            <mat-select placeholder="cliente">
-                <mat-option *ngFor="let cliente of clientes" [value]="cliente.idCliente"
-                    (click)="filerCliente(cliente.idCliente)">
-                    {{ cliente.usuario }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-    <div class="botones">
-        <div class="crear">
-            <button mat-button (click)="openDialog()">Abrir formulario</button>
-        </div>
-        <div class="comprar">
-            <button mat-button (click)="comprar()" [disabled]="id === null">Comprar</button>
-        </div>
-    </div>
-
+<div *ngIf="loading; else content">
+    <app-loading></app-loading>
 </div>
+<ng-template #content>
+    <div class="container">
+        <div class="tittle">
+            <h2>{{titulo}}</h2>
+        </div>
+        <mat-form-field>
+            <mat-label>Filtrar</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ejem. Carro compra" #input>
+        </mat-form-field>
+
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="idPedido">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                    <td mat-cell *matCellDef="let row"> {{row.idPedido}} </td>
+                </ng-container>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="pedido">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Pedido </th>
+                    <td mat-cell *matCellDef="let row"> {{row.pedido}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="clienteNombre">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Cliente </th>
+                    <td mat-cell *matCellDef="let row"> {{row.clienteNombre}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="clienteApellido">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido Cliente </th>
+                    <td mat-cell *matCellDef="let row"> {{row.clienteApellido}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="vehiculoNombre">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Vehículo</th>
+                    <td mat-cell *matCellDef="let row"> {{row.vehiculoNombre}} </td>
+                </ng-container>
+
+                <!-- Progress Column -->
+                <ng-container matColumnDef="vehiculoPrecio">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio Vehículo</th>
+                    <td mat-cell *matCellDef="let row"> {{row.vehiculoPrecio}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="concesionarioNombre">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Concesionario</th>
+                    <td mat-cell *matCellDef="let row"> {{row.concesionarioNombre}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="opciones">
+                    <th mat-header-cell *matHeaderCellDef> Opciones </th>
+                    <td mat-cell *matCellDef="let row">
+                        <button mat-icon-button (click)="editar(row)">
+                            <mat-icon class="custom-icon-edit">edit</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="eliminar(row)">
+                            <mat-icon class="custom-icon-delete">delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                <!-- Row shown when there is no matching data. -->
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                </tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+        <div class="contenedor">
+            <mat-form-field>
+                <mat-select placeholder="cliente">
+                    <mat-option *ngFor="let cliente of clientes" [value]="cliente.idCliente"
+                        (click)="filerCliente(cliente.idCliente)">
+                        {{ cliente.usuario }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="botones">
+            <div class="crear">
+                <button mat-button (click)="openDialog()">Abrir formulario</button>
+            </div>
+            <div class="comprar">
+                <button mat-button (click)="comprar()" [disabled]="id === null">Comprar</button>
+            </div>
+        </div>
+    </div>
+</ng-template>
