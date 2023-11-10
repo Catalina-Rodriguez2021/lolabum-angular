@@ -15,13 +15,21 @@ import Swal from 'sweetalert2';
   styleUrls: ['./form-clientes.component.css']
 })
 export class FormClientesComponent implements OnInit {
-  constructor(public api: ServiceService, public modularService: ModalServiceService,private localStorageService: LocalStorageService) {
+  constructor(public api: ServiceService, public modularService: ModalServiceService, private localStorageService: LocalStorageService) {
     this.habilitado = localStorageService.getItem("isRegistered")
-   }
-  titulo: String = "Registrar"
-  habilitado:boolean = true
+  }
+  //variables funcionales
 
+  //titulo
+  titulo: String = "Registrar";
+  //boton de habilitacion retorno para registro desde menu principal
+  habilitado: boolean = true;
+  //variable control pantalla de carga
+  loading: boolean = false;
 
+  //modelos instanciados funcionales
+
+  //modelo personas para actualizar
   personas: PersonasModelUpdate = {
     idPersona: null,
     identificacion: null,
@@ -34,7 +42,7 @@ export class FormClientesComponent implements OnInit {
     telefono: null,
     estado: null
   }
-
+  //modelo persona para crear
   DataPersonas: PersonasModel = {
     identificacion: null,
     nombre1: null,
@@ -45,7 +53,7 @@ export class FormClientesComponent implements OnInit {
     correo: null,
     telefono: null
   }
-
+  //modelo cliente para actualizar
   clientes: ClientesModelUpdate = {
     idCliente: null,
     idPersona: null,
@@ -53,13 +61,13 @@ export class FormClientesComponent implements OnInit {
     contrasena: null,
     estado: null
   }
-
+  //modelo cliente para crear
   DataCliente: ClientesModel = {
     idPersona: null,
     usuario: null,
     contrasena: null
   }
-
+  //onInit funcion
   isEdit: boolean = false;
   ngOnInit(): void {
     console.log(this.modularService.accion.value)
@@ -100,9 +108,9 @@ export class FormClientesComponent implements OnInit {
       );
       this.titulo = this.modularService.titulo;
     }
-    
-  }
 
+  }
+  //formulario control
   private fb = inject(FormBuilder);
   addressForm = this.fb.group({
     id: [0, Validators.compose([
@@ -126,129 +134,118 @@ export class FormClientesComponent implements OnInit {
     ])],
     password: ['', Validators.required]
   });
+  //funciones
 
+  private extractPersonaData(op: string): any {
+    let opcion = op
+    switch (opcion) {
+      case "crear":
+        return {
+          identificacion: this.addressForm.controls['id'].value,
+          nombre1: this.addressForm.controls['nombre'].value,
+          nombre2: this.addressForm.controls['nombre2'].value,
+          apellido1: this.addressForm.controls['apellido'].value,
+          apellido2: this.addressForm.controls['apellido2'].value,
+          telefono: this.addressForm.controls['telefono'].value,
+          edad: this.addressForm.controls['edad'].value,
+          correo: this.addressForm.controls['correo'].value
+        };
+        break;
+      default:
+        return {
+          identificacion: this.addressForm.controls['id'].value,
+          nombre1: this.addressForm.controls['nombre'].value,
+          nombre2: this.addressForm.controls['nombre2'].value,
+          apellido1: this.addressForm.controls['apellido'].value,
+          apellido2: this.addressForm.controls['apellido2'].value,
+          telefono: this.addressForm.controls['telefono'].value,
+          edad: this.addressForm.controls['edad'].value,
+          correo: this.addressForm.controls['correo'].value,
+          estado: true,
+          idPersona: this.modularService.personas.idPersona
+        };
+        break;
+    }
 
+  }
+  private extractClienteData(idPersona: number, op: string): any {
+    let opcion = op;
+    switch (opcion) {
+      case "crear":
+        return {
+          idPersona,
+          usuario: this.addressForm.controls['usuario'].value,
+          contrasena: this.addressForm.controls['password'].value
+        };
+        break;
+      default:
+        return {
+          idPersona,
+          usuario: this.addressForm.controls['usuario'].value,
+          contrasena: this.addressForm.controls['password'].value,
+          estado: true,
+          idCliente: this.modularService.clientes.idCliente
+        };
+        break
+    }
 
-  onSubmit(): void {
-    if (!this.isEdit) {
-      //validacion del fomrulario
+  }
+  async CrearCLiente(): Promise<void> {
+    // Lógica común para ambos casos (nuevo registro y edición)
+    const personaData = this.extractPersonaData("crear");
+    const personaResponse = await this.api.PostData('Personas', personaData);
+
+    const clienteData = this.extractClienteData(personaResponse.idPersona, "crear");
+    const clienteResponse = await this.api.PostData('Clientes', clienteData);
+  }
+
+  async ActualizarCLiente(): Promise<void> {
+    // Lógica común para ambos casos (nuevo registro y edición)
+    const personaData = this.extractPersonaData("editar");
+    await this.api.updateData('Personas', personaData.idPersona, personaData);
+
+    const clienteData = this.extractClienteData(personaData.idPersona, "editar");
+    console.log(clienteData)
+    await this.api.updateData('Clientes', clienteData.idCliente, clienteData);
+
+  }
+  async onSubmit() {
+    try {
       if (this.addressForm.valid) {
-        //instanciar objeto personsa con los datos del formulario
-        this.DataPersonas.identificacion = this.addressForm.controls['id'].value;
-        this.DataPersonas.nombre1 = this.addressForm.controls['nombre'].value;
-        this.DataPersonas.nombre2 = this.addressForm.controls['nombre2'].value;
-        this.DataPersonas.apellido1 = this.addressForm.controls['apellido'].value;
-        this.DataPersonas.apellido2 = this.addressForm.controls['apellido2'].value;
-        this.DataPersonas.telefono = this.addressForm.controls['telefono'].value;
-        this.DataPersonas.edad = this.addressForm.controls['edad'].value;
-        this.DataPersonas.correo = this.addressForm.controls['correo'].value;
-        console.log(this.DataPersonas)
-        //cuando se instancia, enviar personal al metodo post de personas
-        this.api.PostData('Personas', this.DataPersonas).then((res) => {
-          console.log(res);
-          //cuando se complete la promesa correctamente ahora se debe agregar un cliente a esa persona
-          //se instancia los datos del cliente con los datos del formulario
-          this.DataCliente.idPersona = res.idPersona;
-          this.DataCliente.usuario = this.addressForm.controls['usuario'].value;
-          this.DataCliente.contrasena = this.addressForm.controls['password'].value
-          console.log(this.DataCliente);
-          //enviar datos a post de clientes
-          this.api.PostData('Clientes', this.DataCliente).then((res) => {
-            console.log(res)
-            //aletar registro exitoso
-            Swal.fire(
-              'Registro completo',
-              'Ya estás registrado en nuestro sistema...',
-              'success'
-            )
-          }).catch((error) => {
-            //error promesa cliente
-            Swal.fire(
-              'Alerta',
-              error,
-              'error'
-            )
-          })
-        }).catch((error) => {
-          //error promesa persona
+        this.loading = true;
+        if (!this.isEdit) {
+          await this.CrearCLiente();
+          //aletar registro exitoso
           Swal.fire(
-            'Alerta',
-            error,
-            'error'
-          )
-        })
-      } else {
-        //error validacion formulario
-        Swal.fire(
-          'ALERTA',
-          'Por favor registre el formulario de manera correcta...',
-          'error'
-        )
-      }
-    } else {
-      //validacion del fomrulario
-      if (this.addressForm.valid) {
-        //instanciar objeto personsa con los datos del formulario
-        this.personas.identificacion = this.addressForm.controls['id'].value;
-        this.personas.nombre1 = this.addressForm.controls['nombre'].value;
-        this.personas.nombre2 = this.addressForm.controls['nombre2'].value;
-        this.personas.apellido1 = this.addressForm.controls['apellido'].value;
-        this.personas.apellido2 = this.addressForm.controls['apellido2'].value;
-        this.personas.telefono = this.addressForm.controls['telefono'].value;
-        this.personas.edad = this.addressForm.controls['edad'].value;
-        this.personas.correo = this.addressForm.controls['correo'].value;
-        this.personas.estado = true;
-        this.personas.idPersona = this.modularService.personas.idPersona
-        console.log(this.personas)
-        //cuando se instancia, enviar personal al metodo post de personas
-        this.api.updateData('Personas', this.personas.idPersona, this.personas).then((res) => {
-          console.log(res);
-          //cuando se complete la promesa correctamente ahora se debe agregar un cliente a esa persona
-          //se instancia los datos del cliente con los datos del formulario
-          this.clientes.idPersona = this.modularService.personas.idPersona;
-          this.clientes.usuario = this.addressForm.controls['usuario'].value;
-          this.clientes.contrasena = this.addressForm.controls['password'].value;
-          this.clientes.estado = true;
-          this.clientes.idCliente = this.modularService.clientes.idCliente;
-          console.log(this.clientes);
-          //enviar datos a post de clientes
-          this.api.updateData('Clientes', this.clientes.idCliente,this.clientes).then((res) => {
-            console.log(res)
-            //aletar registro exitoso
-            Swal.fire(
-              'Registro completo',
-              'Ya estás registrado en nuestro sistema...',
-              'success'
-            )
-          }).catch((error) => {
-            //error promesa cliente
-            Swal.fire(
-              'Alerta',
-              error,
-              'error'
-            )
-          })
-        }).catch((error) => {
-          //error promesa persona
+            'Registro completo',
+            'Ya estás registrado en nuestro sistema...',
+            'success'
+          );
+        } else {
+          await this.ActualizarCLiente();
+          //aletar registro exitoso
           Swal.fire(
-            'Alerta',
-            error,
-            'error'
-          )
-        })
-      } else {
-        //error validacion formulario
-        Swal.fire(
-          'ALERTA',
-          'Por favor registre el formulario de manera correcta...',
-          'error'
-        )
+            'Registro completo',
+            'Ya estás registrado en nuestro sistema...',
+            'success'
+          );
+        }
+
       }
+    } catch (err) {
+      Swal.fire(
+        'Alerta',
+        "Error...",
+        'error'
+      )
+    } finally {
+      this.loading = false;
     }
 
   }
 
-  realizarAccion(){
+  //regresar menu principal
+  realizarAccion() {
     this.localStorageService.setItem('isLoggedIn', false);
     this.localStorageService.setItem('isRegistered', false);
     location.reload();

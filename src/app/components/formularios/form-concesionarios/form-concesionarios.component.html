@@ -1,4 +1,19 @@
-<div class="container">
+<div *ngIf="loading; else content">
+  <div class="container">
+    <div class="lds-roller">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</div>
+<ng-template #content>
+  <div class="container">
     <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
       <mat-card class="shipping-card">
         <mat-card-header>
@@ -25,8 +40,7 @@
                   El telefono es <strong>Requerido</strong>
                 </mat-error>
               </mat-form-field>
-            </div> 
-
+            </div>
             <div class="col">
               <h3>Email</h3>
               <mat-form-field class="full-width">
@@ -36,7 +50,6 @@
                 </mat-error>
               </mat-form-field>
             </div>
-                
             <div class="col">
               <h3>Direccion</h3>
               <mat-form-field class="full-width">
@@ -45,13 +58,13 @@
                   La direccion es <strong>Requerida</strong>
                 </mat-error>
               </mat-form-field>
-            </div>   
-                      
+            </div>
           </div>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary" type="submit">{{titulo}}</button>
+          <button mat-raised-button type="submit" class="boton">{{titulo}}</button>
         </mat-card-actions>
       </mat-card>
     </form>
   </div>
+</ng-template>

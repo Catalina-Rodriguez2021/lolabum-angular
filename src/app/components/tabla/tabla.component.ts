@@ -13,12 +13,12 @@ import { LocalStorageService } from 'src/app/services/local-storage-service.serv
   templateUrl: './tabla.component.html',
   styleUrls: ['./tabla.component.css']
 })
-export class TablaComponent{
-  titulo:String = "Inicio de sesión";
+export class TablaComponent {
+  titulo: String = "Inicio de sesión";
+  loading: Boolean = false;
 
-
-  isEdit:boolean = false;
-  constructor(public api: ServiceService, public modularService:ModalServiceService, private localStorageService: LocalStorageService) { }
+  isEdit: boolean = false;
+  constructor(public api: ServiceService, public modularService: ModalServiceService, private localStorageService: LocalStorageService) { }
 
   private fb = inject(FormBuilder);
   addressForm = this.fb.group({
@@ -27,24 +27,30 @@ export class TablaComponent{
   });
 
   onSubmit(): void {
-    if(this.addressForm.valid){
-      this.api.login(this.addressForm.controls['usuario'].value,this.addressForm.controls['contrasena'].value).then(res =>{
+    if (this.addressForm.valid) {
+      //loader
+      this.loading = true;
+      this.api.login(this.addressForm.controls['usuario'].value, this.addressForm.controls['contrasena'].value).then(res => {
         console.log("inicio de sesión");
         this.localStorageService.setItem('nombre', res.usuario);
         this.localStorageService.setItem('isLoggedIn', true);
         location.reload();
-      }).catch(err =>{
+        //loader
+        this.loading = false
+      }).catch(err => {
         Swal.fire(
           'Alerta',
           "error al iniciar sesión",
           'error'
         )
-        console.log("error inicio de sesion")
+        console.log("error inicio de sesion");
+        //loader
+        this.loading = false;
       })
     }
   }
 
-  crearCuenta(){
+  crearCuenta() {
     this.localStorageService.setItem('isLoggedIn', false);
     this.localStorageService.setItem('isRegistered', true);
     location.reload();

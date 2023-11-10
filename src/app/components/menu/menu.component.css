@@ -1,3 +1,9 @@
+
+a {
+  text-decoration: none;
+  color: #A1BDBF;
+  cursor: pointer;
+}
 .sidenav-container {
   height: 100%;
 }

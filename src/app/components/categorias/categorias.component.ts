@@ -22,6 +22,7 @@ export class CategoriasComponent implements OnInit, AfterViewInit {
   constructor(public api: ServiceService, public dialog: MatDialog, public modalService:ModalServiceService) { }
   titulo = 'VISTA CATEGORIA';
   vehiculos = []
+  loading:boolean = false;
 
   ngOnInit() {
     this.api.GetData('Categoriums').then((res) => {
@@ -65,6 +66,7 @@ export class CategoriasComponent implements OnInit, AfterViewInit {
   }
   
   eliminar(row: any) {
+    //boton confirmacion eliminar
     Swal.fire({
       title: 'Está seguro?',
       text: "No será capáz de revertir!",
@@ -76,36 +78,21 @@ export class CategoriasComponent implements OnInit, AfterViewInit {
       confirmButtonText: 'Si, elimínalo!'
     }).then((result) => {
       if (result.isConfirmed) {
-
         console.log(row.idCategoria)
-
         this.api.DeleteData("Categoriums", row.idCategoria).then((res) => {
-          console.log("AQUI")
-          console.log(this.vehiculos)
           this.vehiculos.forEach((element)=>{
             if(element.idCategoria === row.idCategoria){
-              console.log(element)
-              console.log("entra ciclo")
               this.api.DeleteData("Vehiculoes", element.idVehiculos).then((res) => {
-                console.log(res);
-                console.log('eliminado');
-                console.log(element)
-              }).catch((err) => {
-                console.log(err)
               })
             }
           })
-          console.log(res);
           this.ngOnInit();
           Swal.fire(
             'Eliminado!',
             'El resgitro ha sido eliminado con exito.',
             'success'
           )
-        }).catch((err) => {
-          console.log(err)
         })
-
       }
     })
   }
@@ -117,7 +104,6 @@ export class CategoriasComponent implements OnInit, AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed'+result);
       this.ngOnInit();
     });
   }

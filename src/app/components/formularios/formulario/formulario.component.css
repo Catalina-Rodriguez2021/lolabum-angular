@@ -34,3 +34,8 @@
   margin-top: 60px;
 }
 
+.boton {
+  background-color: #5C6C6E; /* Cambia esto al color que desees */
+  color: white; /* Cambia esto al color de texto que desees */
+}
+

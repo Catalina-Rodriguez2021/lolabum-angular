@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 export class FormConcesionariosComponent implements OnInit{
 
   titulo:String = "";
+  loading:boolean = false;
 
   concesionario: ConsesionariosModel = {
     nombre: null,
@@ -67,6 +68,7 @@ export class FormConcesionariosComponent implements OnInit{
   onSubmit(): void {
     if(!this.isEdit){
       if (this.addressForm.valid) {
+        this.loading = true;
         this.concesionario.nombre = this.addressForm.controls['nombre'].value;
         this.concesionario.direccion = this.addressForm.controls['direccion'].value;
         this.concesionario.telefono = parseInt(this.addressForm.controls['telefono'].value);
@@ -78,7 +80,8 @@ export class FormConcesionariosComponent implements OnInit{
             'Registro completo',
             'Ya estás registrado en nuestro sistema...',
             'success'
-          )
+          );
+          this.loading = false;
         }).catch((err) => {
           Swal.fire(
             'Alerta',
