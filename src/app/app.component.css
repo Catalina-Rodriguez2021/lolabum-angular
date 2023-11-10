@@ -1,0 +1,11 @@
+        /* Estilos para centrar la imagen horizontalmente */
+        .centered-horizontal {
+            display: flex;
+            justify-content: center;
+        }
+
+        .centered-horizontal img {
+            /* Ajusta el margen superior e inferior según sea necesario */
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }

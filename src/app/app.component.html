@@ -2,10 +2,13 @@
     <app-menu></app-menu>
 </ng-container>
 <ng-template #loginTemplate>
-    <ng-container *ngIf="isRegistered; else loginForm">
-        <app-form-clientes></app-form-clientes>
-    </ng-container>
-    <ng-template #loginForm>
-        <app-tabla></app-tabla>
-    </ng-template>
+    <div class="centered-horizontal">
+        <img src="https://i.imgur.com/Jeym2rL.png" title="source: imgur.com" width="800" height="800">
+        <ng-container *ngIf="isRegistered; else loginForm">
+            <app-form-clientes></app-form-clientes>
+        </ng-container>
+        <ng-template #loginForm>
+            <app-tabla></app-tabla>
+        </ng-template>
+    </div>
 </ng-template>

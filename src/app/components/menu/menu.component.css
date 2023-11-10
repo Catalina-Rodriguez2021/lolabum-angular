@@ -30,7 +30,7 @@
 }
 
 .icon {
-  padding-left: 85%;
+  padding-left: 80%;
   align-items: end;
 }
 
@@ -54,3 +54,12 @@ button.mat-button:hover {
   text-decoration: none;
 }
 
+span {
+  display: flex;
+  align-items: center;
+}
+
+/* Añade un poco de margen para mejorar la apariencia */
+span img {
+  margin-right: 10px; /* Puedes ajustar este valor según sea necesario */
+}

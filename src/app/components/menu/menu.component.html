@@ -43,9 +43,9 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>lolabum-angular</span>
+      <span>lolabum-angular <a><img src="https://i.imgur.com/2jpWGQa.png" width="60" height="60"></a></span>
       <div class="icon">
-          <button mat-button [matMenuTriggerFor]="menu" ><ngx-avatars bgColor="#400E37" class="ngx-icon" name="{{nombre}}"></ngx-avatars></button>
+          <button mat-button [matMenuTriggerFor]="menu" ><ngx-avatars bgColor="#A1BDBF" class="ngx-icon" name="{{nombre}}"></ngx-avatars></button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="cerrarSesion()">Cerrar sesión</button>
           </mat-menu>
