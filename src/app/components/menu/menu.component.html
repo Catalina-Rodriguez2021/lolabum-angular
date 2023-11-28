@@ -27,10 +27,6 @@
         <mat-icon>shopping_cart</mat-icon>
         PEDIDOS
       </a>
-      <a mat-list-item href="personas">
-        <mat-icon>person</mat-icon>
-        PERSONAS
-      </a>
       <a mat-list-item href="vehiculos">
         <mat-icon>directions_car</mat-icon>
         VEHICULOS
@@ -43,13 +39,15 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span><a href="/">lolabum-angular</a><a><img src="https://i.imgur.com/2jpWGQa.png" width="60" height="60"></a></span>
+      <span><a href="/">lolabum-angular</a><a><img src="https://i.imgur.com/2jpWGQa.png" width="60"
+            height="60"></a></span>
       <div class="icon">
-          <button mat-button [matMenuTriggerFor]="menu" ><ngx-avatars bgColor="#A1BDBF" class="ngx-icon" name="{{nombre}}"></ngx-avatars></button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="cerrarSesion()">Cerrar sesión</button>
-          </mat-menu>
-      </div>    
+        <button mat-button [matMenuTriggerFor]="menu"><ngx-avatars bgColor="#A1BDBF" class="ngx-icon"
+            name="{{nombre}}"></ngx-avatars></button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="cerrarSesion()">Cerrar sesión</button>
+        </mat-menu>
+      </div>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

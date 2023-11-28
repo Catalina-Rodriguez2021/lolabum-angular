@@ -1,4 +1,4 @@
-        /* Estilos para centrar la imagen horizontalmente */
+   /* Estilos para centrar la imagen horizontalmente */
         .centered-horizontal {
             display: flex;
             justify-content: center;
@@ -9,8 +9,6 @@
             margin-top: 20px;
             margin-bottom: 20px;
         }
-
-        
 /*loader*/
 .lds-roller {
     display: inline-block;
@@ -96,3 +94,21 @@
       transform: rotate(360deg);
     }
   }
+
+  .imagen {
+    max-width: 100%;
+    object-fit: cover;
+    object-position: center;
+    height: auto;
+    width: auto;
+  }
+  
+  @media only screen and (max-width: 900px) {
+    .centered-horizontal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
+  
